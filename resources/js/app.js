@@ -2,7 +2,7 @@ import routes from "./router";
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 
-import App from "./App";
+import App from "./App.vue";
 
 window.Vue = require('vue');
 
