@@ -1,13 +1,11 @@
 import routes from "./router";
 import VueRouter from 'vue-router'
-import Vuetify from 'vuetify'
 
 import App from "./App.vue";
 
 window.Vue = require('vue');
 
 Vue.use(VueRouter);
-Vue.use(Vuetify);
 
 
 // require('./bootstrap');
