@@ -25,6 +25,6 @@
   }
 </script>
 
-<style>
-  @import '~vuetify/dist/vuetify.min.css';
+<style lang="scss">
+  @import "~bootstrap/scss/bootstrap.scss";
 </style>
