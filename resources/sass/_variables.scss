@@ -17,4 +17,16 @@ $color-design: #F4633A;
 $color-economia: #F1C400;
 $color-filosofia: #B79A81;
 
-$icon-size: 30px
+$icon-size: 30px;
+
+
+.body-page{
+  min-height: 650px;
+}
+
+.star-size-md{
+  font-size: 25px;
+}
+.star-yellow{
+  color: #ffc107!important;;
+}

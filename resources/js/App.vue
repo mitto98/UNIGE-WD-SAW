@@ -27,4 +27,9 @@
 
 <style lang="scss">
   @import "~bootstrap/scss/bootstrap.scss";
+  @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Slab&display=swap');
+
+  body{
+    font-family: 'Fira Sans', sans-serif;
+  }
 </style>
