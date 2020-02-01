@@ -1,8 +1,10 @@
 <template>
   <div class="area-box">
-    <div :style="{backgroundColor: area.background_color}">
-      <p class="text-center" :style="{color: area.text_color || '#000'}">{{area.acronym}}</p>
-    </div>
+    <router-link :to="{name : 'area', params: { areas_id: area.id }} ">
+      <div :style="{backgroundColor: area.background_color}">
+        <p class="text-center" :style="{color: area.text_color || '#000'}">{{area.acronym}}</p>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -10,6 +12,7 @@
   export default {
     props: ['area'],
     name: "AreaBox"
+
   }
 </script>
 
