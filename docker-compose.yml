@@ -1,0 +1,47 @@
+version: '2'
+
+services:
+  laravel:
+    image: registry.gitlab.com/mitto98/progettowd:latest
+    expose:
+      - 80
+    environment:
+      - APP_NAME=Mugugno
+      - APP_KEY=base64:9v5bJrE7VTI4ZFnNj2q1I1aN97KPulFKd71HdBDC/uw=
+      - APP_DEBUG=false
+      - DB_CONNECTION=mysql
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=SuperSecret123
+    depends_on:
+      - mysql
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mugugno.rule=Host(`mugugno.mattiadapino.it`)"
+    networks:
+      - default
+      - project
+
+  mysql:
+    image: mysql:5.6.36
+    volumes:
+      - db_data:/var/lib/mysql
+    expose:
+      - "3306"
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=SuperSecret123
+    networks:
+      - project
+
+volumes:
+  db_data:
+
+networks:
+  default:
+    external:
+      name: gateway
+  project:
+    internal: true
