@@ -6,36 +6,35 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateRatingsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
-        Schema::create('ratings', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title',128)->nullable(false);
-            $table->text('text');
-            $table->string('course',20)->nullable(false);
-            $table->integer('rating',false,true)->nullable(true);
-            $table->timestamp('create_date')->useCurrent()->nullable(false);
-            $table->timestamp('update_date')->useCurrent()->nullable(false);
-            $table->string('user',8)->nullable(false);
+  /**
+   * Run the migrations.
+   *
+   * @return void
+   */
+  public function up()
+  {
+    Schema::create('ratings', function (Blueprint $table) {
+      $table->bigIncrements('id');
+      $table->string('title', 128);
+      $table->text('text');
+      $table->unsignedBigInteger('course');
+      $table->integer('rating')->unsigned();
+      $table->string('user', 8)->nullable(false);
+      $table->timestamps();
 
-            $table->foreign('course')->references('code')->on('courses');
-            $table->foreign('user')->references('registration_number')->on('users');
+      $table->foreign('course')->references('id')->on('courses');
+      $table->foreign('user')->references('registration_number')->on('users');
 
-        });
-    }
+    });
+  }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::dropIfExists('ratings');
-    }
+  /**
+   * Reverse the migrations.
+   *
+   * @return void
+   */
+  public function down()
+  {
+    Schema::dropIfExists('ratings');
+  }
 }

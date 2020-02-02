@@ -14,13 +14,13 @@ class CreateCoursesUsersTable extends Migration
     public function up()
     {
         Schema::create('courses_users', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('code',20)->nullable(false);
-            $table->string('registration_number',8)->nullable(false);
-            $table->boolean('finished')->default(false);
+          $table->unsignedBigInteger('course_id');
+          $table->foreign('course_id')->references('id')->on('courses');
 
-            $table->foreign('code')->references('code')->on('courses');
-            $table->foreign('registration_number')->references('registration_number')->on('users');
+          $table->string('user_number',8)->nullable(false);
+          $table->foreign('user_number')->references('registration_number')->on('users');
+
+          $table->boolean('finished')->default(false);
         });
     }
 

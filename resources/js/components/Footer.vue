@@ -1,7 +1,7 @@
 <template>
-  <footer class="footerbar">
+  <footer class="footerbar mt-4">
     <div>
-      <span class="text-muted"></span>
+      <span class="text-muted"/>
     </div>
   </footer>
 </template>
@@ -21,6 +21,5 @@
     bottom: 0;
     width: 100%;
     line-height: 60px;
-    margin-top: 50px;
   }
 </style>

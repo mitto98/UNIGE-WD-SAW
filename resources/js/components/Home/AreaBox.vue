@@ -1,7 +1,7 @@
 <template>
   <div class="area-box">
     <router-link :to="{name : 'area', params: { areas_id: area.id }} ">
-      <div :style="{backgroundColor: area.background_color}">
+      <div class="rounded" :style="{backgroundColor: area.background_color}">
         <p class="text-center" :style="{color: area.text_color || '#000'}">{{area.acronym}}</p>
       </div>
     </router-link>
@@ -12,11 +12,15 @@
   export default {
     props: ['area'],
     name: "AreaBox"
-
   }
 </script>
 
 <style lang="scss">
+  @keyframes shift-in {
+    0%   {padding: 8px;}
+    100% {padding: 16px;}
+  }
+
   .area-box {
     width: 180px;
     height: 180px;
@@ -26,8 +30,7 @@
     user-select: none;
     &:hover {
       padding: 16px;
-      /*animation-name: hovering;*/
-      /*animation-duration: 4s;*/
+      animation: shift-in .3s;
     }
     div {
       width: 100%;
