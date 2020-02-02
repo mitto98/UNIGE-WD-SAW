@@ -1,6 +1,15 @@
 <template>
-  <div class="area-container">
-    <area-box v-for="area in areas" :key="area.id" :area="area"/>
+  <div>
+    <div class="landscape mb-4"/>
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="area-container">
+            <area-box v-for="area in areas" :key="area.id" :area="area"/>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -36,10 +45,15 @@
 <style lang="scss">
   @import "../../sass/_variables.scss";
 
+  .landscape {
+    height: 256px;
+    background-image: url("/img/home_poster.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .area-container {
-    width: 100vw;
+    width: 100%;
     text-align: center;
-
-
   }
 </style>
