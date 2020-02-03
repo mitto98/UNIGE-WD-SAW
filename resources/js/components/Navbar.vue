@@ -1,8 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand navbar-dark">
-
+  <nav class="navbar navbar-expand navbar-dark py-4">
     <a class="navbar-brand" href="/">
-      <logo :colored="false" width_logo="170px" heigth_logo="70px"/>
+      <img src="/img/loghi/logo_UniGe.svg" alt="UniGe"> Mugugno
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,33 +10,23 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-<!--        <li class="nav-item active">-->
-<!--          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
-<!--        </li>-->
+        <!--
         <li class="nav-item">
-          <a class="nav-link" href="#">ITA/EN</a>
+          <p class="nav-link" href="#"><span class="lang-select">ITA</span>/<span class="lang-select">EN</span></p>
         </li>
-        <!-- TODO rimettere i bottoni e fa -->
-        <!--      <v-btn class="btn btn-primary" icon text x-large v-on:click="showMenuModal">-->
-        <!--        <v-icon large color="#ffffff">mdi-magnify</v-icon>-->
-        <!--      </v-btn>-->
-        <!--      <v-btn text rounded color="#ffffff" x-large v-on:click="showMenuModal">-->
-        <!--        <v-icon large color="#ffffff">mdi-web</v-icon>-->
-        <!--        ITA/EN-->
-        <!--      </v-btn>-->
-        <!--      <v-btn icon text color="#ffffff" x-large v-on:click="showMenuModal">-->
-        <!--        <v-icon color="#ffffff">mdi-account</v-icon>-->
-        <!--      </v-btn>-->
+        -->
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <font-awesome-icon icon="user"/>
+          </a>
+        </li>
       </ul>
     </div>
   </nav>
 </template>
 
 <script>
-  import Logo from "./Logo"
-
   export default {
-    components: {Logo},
     name: "Navbar",
     methods: {
       showMenuModal: function (event) {
@@ -50,15 +39,41 @@
 <style scoped lang="scss">
   @import "../../sass/_variables.scss";
 
-  .nav-link {
-    color: white
-  }
 
   .navbar {
     background-color: $primary-blu;
     display: flex;
     padding: 8px;
 
+    .navbar-brand {
+      display: inline-block;
+
+      padding-left: 8px;
+      margin-bottom: 0;
+
+      color: #1899FA !important;
+      font-weight: bolder;
+
+      img {
+        width: 174px;
+        height: 40px;
+
+        border-right: 1px solid #fff;
+        margin-right: 4px;
+      }
+    }
+  }
+
+  .lang-select {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .nav-link {
+    color: #fff !important;
   }
 
   .button {

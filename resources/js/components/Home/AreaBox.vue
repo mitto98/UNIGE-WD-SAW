@@ -17,12 +17,8 @@
 
 <style lang="scss">
   @keyframes shift-in {
-    0% {
-      padding: 8px;
-    }
-    100% {
-      padding: 16px;
-    }
+    0% {padding: 8px;}
+    100% {padding: 12px;}
   }
 
   @media (max-width: 410px) {
@@ -41,7 +37,7 @@
     user-select: none;
 
     &:hover {
-      padding: 16px;
+      padding: 12px;
       animation: shift-in .3s;
     }
 
