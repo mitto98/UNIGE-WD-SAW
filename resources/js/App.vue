@@ -1,17 +1,7 @@
 <template>
   <div>
     <navbar/>
-<!--    <h1>Vue Router Demo App</h1>
-
-    <p>
-      <router-link :to="{ name: 'index' }">Home</router-link>
-      |
-      <router-link :to="{ name: 'hello' }">Hello World</router-link>
-    </p>-->
-
-    <div>
-      <router-view/>
-    </div>
+    <router-view class="pb-4" style="height: calc(100vh - 158px);"/>
     <Footer/>
   </div>
 </template>
@@ -19,6 +9,7 @@
 <script>
   import Navbar from "./components/Navbar";
   import Footer from "./components/Footer";
+
   export default {
     name: "App",
     components: {Footer, Navbar}
@@ -29,7 +20,7 @@
   @import "~bootstrap/scss/bootstrap.scss";
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Slab&display=swap');
 
-  body{
+  body {
     font-family: 'Fira Sans', sans-serif;
   }
 </style>

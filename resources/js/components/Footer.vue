@@ -1,5 +1,5 @@
 <template>
-  <footer class="footerbar mt-4">
+  <footer class="footerbar">
     <div>
       <span class="text-muted"/>
     </div>
