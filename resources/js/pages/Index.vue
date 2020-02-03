@@ -3,10 +3,8 @@
     <div class="landscape mb-4"/>
     <div class="container">
       <div class="row">
-        <div class="col-12">
-          <div class="area-container">
+        <div class="col-12 area-container">
             <area-box v-for="area in areas" :key="area.id" :area="area"/>
-          </div>
         </div>
       </div>
     </div>
