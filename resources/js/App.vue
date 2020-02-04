@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar/>
-    <router-view class="pb-4" style="height: calc(100vh - 158px);"/>
+    <router-view class="pb-4" style="min-height: calc(100vh - 158px);"/>
     <Footer/>
   </div>
 </template>

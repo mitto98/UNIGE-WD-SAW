@@ -1,7 +1,7 @@
 <template>
   <div class="area-box">
     <router-link :to="{name : 'area', params: { areas_id: area.id }} "
-                 class="rounded text-center"
+                 class="p-1 rounded text-center"
                  :style="{backgroundColor: area.background_color, color: area.text_color || '#000'}">
       {{area.acronym}}
     </router-link>
@@ -35,6 +35,7 @@
     padding: 8px;
     cursor: pointer;
     user-select: none;
+    vertical-align: top;
 
     &:hover {
       padding: 12px;

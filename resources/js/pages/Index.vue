@@ -13,30 +13,18 @@
 
 <script>
   import AreaBox from "../components/Home/AreaBox";
+  import axios from "../axios";
 
   export default {
     components: {AreaBox},
     data: () => ({
-      areas: [
-        {
-          id: 1,
-          'background_color': 'yellow',
-          acronym: "Farmacia",
-        },
-        {
-          id: 2,
-          'background_color': 'orange',
-          acronym: "Farmafbi",
-          text_color: "#fff",
-        },
-        {
-          id: 3,
-          'background_color': 'blue',
-          acronym: "Scienze MFN",
-          text_color: "#fff",
-        },
-      ]
-    })
+      areas: []
+    }),
+    created() {
+      axios.get('/area').then(response => {
+        this.areas = response.data;
+      })
+    }
   }
 </script>
 
