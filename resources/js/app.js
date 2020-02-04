@@ -3,10 +3,11 @@ import VueRouter from 'vue-router'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faStar, faStarHalf,faStarHalfAlt, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faStar, faStarHalf,faStarHalfAlt, faArrowCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUserSecret);
+library.add(faArrowCircleRight);
 library.add(faStar);
 library.add(faStarHalf);
 library.add(faStarHalfAlt);
@@ -17,8 +18,7 @@ import App from "./App.vue";
 window.Vue = require('vue');
 
 Vue.use(VueRouter);
-Vue.component('font-awesome-icon', FontAwesomeIcon)
-
+Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 // require('./bootstrap');
 
