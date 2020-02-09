@@ -3,14 +3,11 @@ import VueRouter from 'vue-router'
 
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faUserSecret, faStar, faStarHalf,faStarHalfAlt, faArrowCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faArrowCircleRight, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUserSecret);
 library.add(faArrowCircleRight);
-library.add(faStar);
-library.add(faStarHalf);
-library.add(faStarHalfAlt);
 library.add(faUser);
 
 import App from "./App.vue";
