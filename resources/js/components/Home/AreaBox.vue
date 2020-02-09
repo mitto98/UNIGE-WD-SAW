@@ -48,10 +48,8 @@
 
       display: flex;
       flex-direction: column;
-
       justify-content: center;
       align-content: center;
-
       font-weight: bold;
 
       &:hover {

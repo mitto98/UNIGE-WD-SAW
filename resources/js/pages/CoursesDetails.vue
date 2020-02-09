@@ -29,8 +29,8 @@
 <script>
   import RatingStar from "../components/General/RatingStar";
   import RatingBar from "../components/General/RatingBar";
-  import AverageRating from "../components/AreasDetails/CoursesDetails/AverageRating";
-  import Comments from "../components/AreasDetails/CoursesDetails/Comments";
+  import AverageRating from "../components/Area/CoursesDetails/AverageRating";
+  import Comments from "../components/Area/CoursesDetails/Comments";
 
   export default {
     name: "CoursesDetails",

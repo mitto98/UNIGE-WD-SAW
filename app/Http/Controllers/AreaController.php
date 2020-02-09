@@ -10,4 +10,9 @@ class AreaController extends Controller
     public function index() {
       return response()->json(Area::all());
     }
+
+    public function get(Area $area) {
+      $area->departments;
+      return response()->json($area);
+    }
 }

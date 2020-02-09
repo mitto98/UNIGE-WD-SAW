@@ -7,7 +7,6 @@
 
   <title>{{ config('app.name', 'Unige | Mugugno') }}</title>
 
-
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 
