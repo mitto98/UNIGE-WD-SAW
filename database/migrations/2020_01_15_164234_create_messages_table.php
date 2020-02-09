@@ -18,7 +18,7 @@ class CreateMessagesTable extends Migration
             $table->text('text');
             $table->string('sender',8);
             $table->string('receiver',8);
-            $table->timestamp('insert_date')->useCurrent();
+            $table->timestamps();
 
 
             $table->foreign('sender')->references('registration_number')->on('users');

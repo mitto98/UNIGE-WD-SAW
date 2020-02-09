@@ -132,7 +132,7 @@ class UnigeSeeder extends Seeder
           $dipVar->code = $dip->code;
           $areaVar->departments()->save($dipVar);
           if(isset($dip->courses)) {
-            $corsi = $dip->courses);
+            $corsi = $dip->courses;
             foreach ($corsi as $cor) {
               $corVar = new \App\Course();
               $corVar->name = $cor->name;

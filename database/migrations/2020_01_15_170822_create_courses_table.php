@@ -15,9 +15,9 @@ class CreateCoursesTable extends Migration
   {
     Schema::create('courses', function (Blueprint $table) {
       $table->bigIncrements('id');
-      $table->string('name', 128)->nullable(false);
-      $table->integer('average_rating', false, true)->nullable(false);
-      $table->string('department', 20)->nullable(false);
+      $table->string('name', 128);
+      $table->integer('average_rating', false, true)->default(0);
+      $table->string('department', 20);
 
       $table->foreign('department')->references('code')->on('departments');
     });
