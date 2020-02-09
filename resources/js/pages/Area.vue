@@ -1,38 +1,25 @@
 <template>
   <div class="container body-page">
-    <div  v-for="departement in departements"  :key="departement.code" class="distance">
-      <h2><b>{{departement.code}}</b></h2>
-      <p style="font-size: 13px">{{departement.name}}</p>
+    <div  v-for="department in area.departments"  :key="department.code">
+      <h5><b>{{department.code}}</b></h5>
+      <p style="font-size: 13px">{{department.name}}</p>
 
-      <div class="container">
-        <course v-for="course in courses" :key="course.id"
-                :name="course.name" :rating="course.rating" :course_id="course.id"/>
+      <div class="courses">
+        <course-card v-for="course in courses" :key="course.id" :course="course"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Course from "../components/AreasDetails/Course";
+  import axios from "../axios";
+  import CourseCard from "../components/Area/CourseCard";
 
   export default {
-    name: "AreaDe",
-    components: {Course},
+    name: "Area",
+    components: {CourseCard},
     data: () => ({
-      departements: [
-        {
-          name: "Dipartimento di stern",
-          code: "DIBRIS",
-        },
-        {
-          name: "Dipartimento di padre nostro",
-          code: "DAD",
-        },
-        {
-          name: "Dipartimento di daje roma ao",
-          code: "DAJE",
-        },
-      ],
+      area: [],
       courses: [
         {
           id: 111,
@@ -42,23 +29,30 @@
         {
           id: 222,
           name: "Bioingegneria",
-          rating: 3
+          rating: 3.3
         },
         {
           id: 333,
           name: "Digital Humanities",
-          rating: 2
+          rating: 2.5
         },
         {
           id: 444,
           name: "Ingegneria Biomeotica",
-          rating: 4
+          rating: 4.6
         },
       ]
-    })
+    }),
+    created() {
+      axios.get("/area/2").then(response => {
+        this.area = response.data;
+      })
+    }
   }
 </script>
 
 <style scoped>
+.courses {
 
+}
 </style>

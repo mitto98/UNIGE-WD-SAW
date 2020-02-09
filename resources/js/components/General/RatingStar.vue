@@ -1,12 +1,15 @@
 <template>
-  <div>
-    <font-awesome-icon v-for="i in Math.trunc(rating)" :key="i" icon="star" :class="large?'star-yellow star-size-lg':'star-yellow star-size-sm'"/>
-    <font-awesome-icon v-if="rating%1 >= 0.75" icon="star" :class="large?'star-yellow star-size-lg':'star-yellow star-size-sm'"/>
-    <font-awesome-icon v-if="rating%1 >= 0.2 && rating%1 < 0.75" icon="star-half" :class="large?'star-yellow star-size-lg':'star-yellow star-size-sm'"/>
-  </div>
+  <p class="star" :class="{large: large}">
+    <font-awesome-icon v-for="i in noFullStar" :key="'full' + i" :icon="faStar"/>
+    <font-awesome-icon v-if="haveHalfStar" :icon="faStarHalfAlt"/>
+    <font-awesome-icon v-for="i in noEmptyStar" :key="'empty' + i" :icon="farStar"/>
+  </p>
 </template>
 
 <script>
+  import {faStar, faStarHalfAlt} from "@fortawesome/free-solid-svg-icons";
+  import {faStar as farStar} from "@fortawesome/free-regular-svg-icons"
+
   export default {
     name: "RatingStar",
     props: {
@@ -14,30 +17,48 @@
         type: Number,
         default: 0,
       },
-      large:{
-        type:Boolean,
+      large: {
+        type: Boolean,
         default: true
+      }
+    },
+    computed: {
+      faStarHalfAlt: () => faStarHalfAlt,
+      faStar: () => faStar,
+      farStar: () => farStar,
+
+      noFullStar() {
+        return Math.trunc(this.rating+.49);
+      },
+      haveHalfStar() {
+        const decimal = Number(this.rating % 1).toFixed(2);
+        return (decimal > 0) && (decimal <= .5);
+      },
+      noEmptyStar() {
+        return 5 - (this.noFullStar + (this.haveHalfStar ? 1 : 0));
       }
     }
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+  p.star {
+    font-size: 0;
+    color: #ffc107;
 
-  .star-size-lg {
-     font-size: 20px;
-     margin-left: 5px;
-     margin-right: 5px;
-   }
+    &.large {
+      svg {
+        font-size: 20px;
+        margin-left: 5px;
+        margin-right: 5px;
+      }
+    }
 
-  .star-size-sm {
-    font-size: 17px;
-    margin-left: 2px;
-    margin-right: 2px;
-  }
-
-  .star-yellow {
-    color: #ffc107 !important;;
+    svg {
+      font-size: 17px;
+      margin-left: 2px;
+      margin-right: 2px;
+    }
   }
 
 </style>
