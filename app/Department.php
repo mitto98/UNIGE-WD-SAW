@@ -11,6 +11,8 @@ class Department extends Model
   protected $keyType = 'string';
   public $timestamps = false;
 
+  protected $with = array('courses');
+
   public function area() {
     return $this->belongsTo(Area::class, 'area');
   }

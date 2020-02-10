@@ -1,6 +1,6 @@
 <template>
   <div class="area-box">
-    <router-link :to="{name : 'area', params: { areas_id: area.id }}"
+    <router-link :to="{name : 'area', params: { area: area.id }}"
                  class="p-1 rounded text-center"
                  :style="{backgroundColor: area.background_color, color: area.text_color || '#000'}">
       {{area.name}}
