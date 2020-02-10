@@ -16,9 +16,9 @@
         </li>
         -->
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <router-link :to="{name: 'login'}" class="nav-link">
             <font-awesome-icon icon="user"/>
-          </a>
+          </router-link>
         </li>
       </ul>
     </div>
