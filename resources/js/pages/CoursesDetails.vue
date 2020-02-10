@@ -1,5 +1,5 @@
 <template>
-  <div class="container body-page">
+  <div class="container">
     <div class="row">
       <div class="col-md-9">
         <h1>Valutazioni e recensioni</h1>

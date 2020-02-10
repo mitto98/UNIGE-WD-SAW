@@ -25,12 +25,12 @@ export default {
       component: Reset
     },
     {
-      path: '/areas/:areas_id',
+      path: '/areas/:area',
       name: 'area',
       component: Area
     },
     {
-      path: '/areas/:areas_id/courses/:course_id',
+      path: '/areas/:area/courses/:course',
       name: 'course',
       component: CoursesDetails
     },

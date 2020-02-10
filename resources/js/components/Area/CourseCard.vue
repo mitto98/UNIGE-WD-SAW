@@ -1,8 +1,7 @@
 <template>
   <div class="course-card">
     <div>
-      <router-link :to="{name : 'course',
-      params: { areas_id: this.$route.params.areas_id, course_id: course.course_id}}">
+      <router-link :to="{name : 'course', params: { area: this.$route.params.area, course: course.id}}">
         <h5>{{course.name}}</h5>
         <rating-star :rating="course.rating" :large="false"/>
       </router-link>
