@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="row pt-4">
       <div class="col-md-9">
-        <h1>Valutazioni e recensioni</h1>
+        <h1>{{ $t('course.ratings') }}</h1>
       </div>
       <div class="col-md-3 align-bottom">
         <h5>Dettaglio</h5>
