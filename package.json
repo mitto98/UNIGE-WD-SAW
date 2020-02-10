@@ -13,6 +13,7 @@
     "axios": "^0.19",
     "bootstrap": "^4.4.1",
     "cross-env": "^5.1",
+    "css-loader": "^3.4.2",
     "jquery": "^3.2",
     "laravel-mix": "^4.0.7",
     "lodash": "^4.17.13",
@@ -21,14 +22,15 @@
     "sass": "^1.20.1",
     "sass-loader": "^7.3.1",
     "vue": "^2.5.17",
+    "vue-router": "^3.1.5",
     "vue-template-compiler": "^2.6.10",
-    "css-loader": "^3.4.2",
-    "vue-router": "^3.1.5"
+    "webpack-livereload-plugin": "^1.2.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.26",
     "@fortawesome/free-regular-svg-icons": "^5.12.1",
     "@fortawesome/free-solid-svg-icons": "^5.12.0",
-    "@fortawesome/vue-fontawesome": "^0.1.9"
+    "@fortawesome/vue-fontawesome": "^0.1.9",
+    "vue-i18n": "^8.15.3"
   }
 }

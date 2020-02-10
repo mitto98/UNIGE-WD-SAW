@@ -10,11 +10,11 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <!--
         <li class="nav-item">
-          <p class="nav-link" href="#"><span class="lang-select">ITA</span>/<span class="lang-select">EN</span></p>
+          <p class="nav-link">
+            <span class="lang-select" @click="() => {$i18n.locale = 'it'}">IT</span>/<span class="lang-select"  @click="() => {$i18n.locale = 'en'}">EN</span>
+          </p>
         </li>
-        -->
         <li class="nav-item">
           <router-link :to="{name: 'login'}" class="nav-link">
             <font-awesome-icon icon="user"/>
