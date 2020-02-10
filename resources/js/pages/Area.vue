@@ -52,7 +52,4 @@
 </script>
 
 <style scoped>
-.courses {
-
-}
 </style>
