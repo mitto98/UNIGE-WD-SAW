@@ -28,7 +28,15 @@ class UnigeSeeder extends Seeder
         "departments" : [
           {
             "code": "DIBRIS",
-            "name": "Dipartimento di Informatica, Bioingegneria, Robotica e Ingegneria dei Sistemi"
+            "name": "Dipartimento di Informatica, Bioingegneria, Robotica e Ingegneria dei Sistemi",
+            "courses": [
+            {
+              "name": "Laurea in Informatica (Professionale)"
+            },
+            {
+              "name": "Laurea in Informatica (Metodologico)"
+            }
+            ]
           },
           {
             "code": "DIFI",
@@ -68,7 +76,12 @@ class UnigeSeeder extends Seeder
         "departments" : [
           {
             "code": "DAD",
-            "name": "Dipartimento di Architettura e Design"
+            "name": "Dipartimento di Architettura e Design",
+            "courses" : [
+            {
+              "name": "Laurea in Design"
+            }
+            ]
           }
         ]
       },
@@ -118,6 +131,14 @@ class UnigeSeeder extends Seeder
           $dipVar->name = $dip->name;
           $dipVar->code = $dip->code;
           $areaVar->departments()->save($dipVar);
+          if(isset($dip->courses)) {
+            $corsi = $dip->courses;
+            foreach ($corsi as $cor) {
+              $corVar = new \App\Course();
+              $corVar->name = $cor->name;
+              $dipVar->courses()->save($corVar);
+            }
+          }
         }
       }
     }

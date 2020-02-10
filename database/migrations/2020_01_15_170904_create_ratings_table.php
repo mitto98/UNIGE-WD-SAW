@@ -19,7 +19,7 @@ class CreateRatingsTable extends Migration
       $table->text('text');
       $table->unsignedBigInteger('course');
       $table->integer('rating')->unsigned();
-      $table->string('user', 8)->nullable(false);
+      $table->string('user', 8);
       $table->timestamps();
 
       $table->foreign('course')->references('id')->on('courses');
