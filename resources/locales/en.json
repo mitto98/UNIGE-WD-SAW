@@ -1,4 +1,18 @@
 {
+  "login": {
+    "username": "Username",
+    "password": "Password",
+    "login": "Log-in",
+    "reset": "Reset password",
+    "forgot_pw": "Forgot passowrd?",
+    "help": "Need help?",
+    "gdpr": "Data protection policy (GDPR)",
+    "got_help": "Arrangiati anche in inglese"
+  },
+  "gdpr": {
+    "title": "Data protection policy",
+    "content": "Seriously? Someone actually read this stuff?"
+  },
   "course": {
     "info": "Course info",
     "ratings": "Ratings"
