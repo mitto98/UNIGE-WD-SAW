@@ -2,8 +2,8 @@
   <div class="container">
     <div class="row">
       <div class="col-12 pt-5">
-        <h2>Politica sulla gestione dei dati</h2>
-        <p>Davvero? Qualcuno legge seriamente queste cose?</p>
+        <h2>{{$t('gdpr.title')}}</h2>
+        <p>{{$t('gdpr.content')}}</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin metus leo, fermentum id nunc a, pellentesque
           consequat quam. Nullam consectetur efficitur feugiat. Fusce ornare sagittis est, consequat auctor urna
           volutpat nec. Sed et ornare risus, sed rutrum sapien. Sed nulla lacus, tempus nec varius in, tincidunt sed

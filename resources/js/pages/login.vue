@@ -6,23 +6,20 @@
           <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
           <img src="/img/estudiantes.png" alt="login image" class="mb-2" width="100%">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username">
+            <input type="text" class="form-control" :placeholder="$t('login.username')">
           </div>
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Password">
+            <input type="text" class="form-control" :placeholder="$t('login.password')">
           </div>
-          <button type="button" class="btn btn-primary btn-block">Accedi</button>
-          <router-link :to="{name: 'reset'}"
-                       class="btn btn-link btn-sm btn-block text-white">
-            Password dimenticata?
+          <button type="button" class="btn btn-primary btn-block">{{$t('login.login')}}</button>
+          <router-link :to="{name: 'reset'}" class="btn btn-link btn-sm btn-block text-white">
+            {{ $t('login.forgot_pw') }}
           </router-link>
-          <router-link :to="{name: 'help'}"
-                       class="btn btn-link btn-sm btn-block text-white">
-            Serve aiuto?
+          <router-link :to="{name: 'help'}" class="btn btn-link btn-sm btn-block text-white">
+            {{ $t('login.help') }}
           </router-link>
-          <router-link :to="{name: 'gdpr'}"
-                       class="btn btn-link btn-sm btn-block text-white">
-            Regolamento sulla protezione di dati (GDPR)
+          <router-link :to="{name: 'gdpr'}" class="btn btn-link btn-sm btn-block text-white">
+            {{ $t('login.gdpr') }}
           </router-link>
         </form>
       </div>
