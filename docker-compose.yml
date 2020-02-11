@@ -1,4 +1,4 @@
-version: '2'
+version: '3.3'
 
 services:
   laravel:
@@ -6,15 +6,15 @@ services:
     expose:
       - 80
     environment:
-      - APP_NAME=Mugugno
-      - APP_KEY=base64:9v5bJrE7VTI4ZFnNj2q1I1aN97KPulFKd71HdBDC/uw=
-      - APP_DEBUG=false
-      - DB_CONNECTION=mysql
-      - DB_HOST=mysql
-      - DB_PORT=3306
-      - DB_DATABASE=laravel
-      - DB_USERNAME=root
-      - DB_PASSWORD=SuperSecret123
+      APP_NAME: Mugugno
+      APP_KEY: 'base64:9v5bJrE7VTI4ZFnNj2q1I1aN97KPulFKd71HdBDC/uw='
+      APP_DEBUG: false
+      DB_CONNECTION: mysql
+      DB_HOST: mysql
+      DB_PORT: 3306
+      DB_DATABASE: mugugno
+      DB_USERNAME: mugugno
+      DB_PASSWORD: SuperSecret123
     depends_on:
       - mysql
     labels:
@@ -25,14 +25,16 @@ services:
       - project
 
   mysql:
-    image: mysql:5.6.36
+    image: mysql:5.6
     volumes:
       - db_data:/var/lib/mysql
     expose:
-      - "3306"
+      - 3306
     environment:
-      - MYSQL_DATABASE=laravel
-      - MYSQL_ROOT_PASSWORD=SuperSecret123
+      MYSQL_DATABASE: mugugno
+      MYSQL_USER: mugugn
+      MYSQL_PASSWORD: SuperSecret123
+      MYSQL_ROOT_PASSWORD: SuperSecret123
     networks:
       - project
 
