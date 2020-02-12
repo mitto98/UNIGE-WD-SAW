@@ -9,6 +9,9 @@ build-frontend:
   only:
     - master
     - dev
+  variables:
+    MIX_OAUTH_CLIENT_ID: '2'
+    MIX_OAUTH_CLIENT_SECRET: 'ohEKqvUQ1EKX7ubzJvCgonBpx1V2AGAIce2hSH9C'
   script:
     - npm install
     - npm run prod
