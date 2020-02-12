@@ -1,33 +1,32 @@
-import Index from "./pages/Index";
-import Area from "./pages/Area";
-import CoursesDetails from "./pages/CoursesDetails";
-import Login from "./pages/login";
-import Reset from "./pages/reset";
-import Gdpr from "./pages/gdpr";
-import Help from "./pages/help";
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-export default {
+import CoursesDetails from "./pages/CoursesDetails";
+
+Vue.use(VueRouter);
+
+export default new VueRouter({
   mode: 'history',
   routes: [
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: require("./pages/Index").default
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: require("./pages/login").default
     },
     {
       path: '/reset',
       name: 'reset',
-      component: Reset
+      component: require("./pages/reset").default
     },
     {
       path: '/areas/:area',
       name: 'area',
-      component: Area
+      component: require("./pages/Area").default
     },
     {
       path: '/areas/:area/courses/:course',
@@ -37,12 +36,12 @@ export default {
     {
       path: '/gdpr',
       name: 'gdpr',
-      component: Gdpr
+      component: require("./pages/gdpr").default
     },
     {
       path: '/help',
       name: 'help',
-      component: Help
+      component: require("./pages/help").default
     },
   ],
-}
+});

@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark py-4">
-    <a class="navbar-brand" href="/">
+    <router-link class="navbar-brand" :to="{name: 'index'}">
       <img src="/img/loghi/logo_UniGe.svg" alt="UniGe"> Mugugno
-    </a>
+    </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"/>

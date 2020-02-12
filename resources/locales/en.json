@@ -7,7 +7,8 @@
     "forgot_pw": "Forgot passowrd?",
     "help": "Need help?",
     "gdpr": "Data protection policy (GDPR)",
-    "got_help": "Arrangiati anche in inglese"
+    "got_help": "Arrangiati anche in inglese",
+    "invalid": "Invalid username or password"
   },
   "gdpr": {
     "title": "Data protection policy",
