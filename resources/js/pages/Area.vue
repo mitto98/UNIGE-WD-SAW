@@ -23,7 +23,7 @@
       area: null,
     }),
     created() {
-      axios.get(`/area/${this.$route.params.area}`).then(response => {
+      axios.get(`/api/area/${this.$route.params.area}`).then(response => {
         this.area = response.data;
       })
     }

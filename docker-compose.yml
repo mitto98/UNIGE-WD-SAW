@@ -5,6 +5,8 @@ services:
     image: registry.gitlab.com/mitto98/progettowd:latest
     expose:
       - 80
+    volumes:
+    - ./storage:/var/www/html/storage
     environment:
       APP_NAME: 'Mugugno'
       APP_KEY: 'base64:9v5bJrE7VTI4ZFnNj2q1I1aN97KPulFKd71HdBDC/uw='

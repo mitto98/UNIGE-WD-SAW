@@ -21,9 +21,15 @@
       areas: []
     }),
     created() {
-      axios.get('/area').then(response => {
+      axios.get('/api/area').then(response => {
         this.areas = response.data;
-      })
+      });
+
+
+      axios.get('/api/user')
+        .then(response => {
+          console.log("USER RESPONSE", response.data);
+        });
     }
   }
 </script>
