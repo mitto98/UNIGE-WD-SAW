@@ -4,10 +4,8 @@
       <div class="row justify-content-center">
         <form class="col-sm-12 col-md-6 col-lg-4">
           <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
-          <img src="/img/estudiantes.png" alt="login image" class="mb-2" width="100%">
-          <div class="form-group">
-            <input type="text" class="form-control" :placeholder="$t('login.username')">
-          </div>
+          <img src="/img/recupero.png" alt="login image" class="mb-2" width="100%">
+          <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')"/>
           <button type="button" class="btn btn-primary btn-block">{{$t('login.reset')}}</button>
         </form>
       </div>
@@ -16,7 +14,9 @@
 </template>
 
 <script>
+  import IFTAInput from "../components/IFTAInput";
   export default {
-    name: "reset"
+    name: "reset",
+    components: {IFTAInput}
   }
 </script>

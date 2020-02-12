@@ -40,7 +40,8 @@
   .landscape {
     height: 256px;
     background-image: url("/img/home_poster.jpg");
-    background-position: center;
+    background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
   }
 
