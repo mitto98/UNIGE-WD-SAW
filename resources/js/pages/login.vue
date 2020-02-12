@@ -5,12 +5,8 @@
         <form class="col-sm-12 col-md-6 col-lg-4" @submit.prevent="login">
           <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
           <img src="/img/estudiantes.png" alt="login image" class="mb-2" width="100%">
-          <div class="form-group">
-            <input type="text" v-model="username" class="form-control" :placeholder="$t('login.username')" autofocus>
-          </div>
-          <div class="form-group">
-            <input type="password" v-model="password" class="form-control" :placeholder="$t('login.password')">
-          </div>
+          <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')"/>
+          <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')"/>
 
           <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">
             {{error}}
@@ -38,9 +34,11 @@
 
 <script>
   import {mapActions} from "vuex";
+  import IFTAInput from "../components/IFTAInput";
 
   export default {
     name: "login",
+    components: {IFTAInput},
     data: () => ({
       username: "",
       password: "",
