@@ -10,3 +10,7 @@ Route::prefix('area')->group(function () {
   Route::get('/', 'AreaController@index');
   Route::get('/{area}', 'AreaController@get');
 });
+
+Route::prefix('course')->group(function () {
+  Route::get('/{course}', 'CourseController@get');
+});

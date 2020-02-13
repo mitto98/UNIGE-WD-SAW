@@ -16,6 +16,20 @@
   },
   "course": {
     "info": "Scheda corsi",
-    "ratings": "Valutazioni"
-  }
+    "ratings": "Valutazioni",
+    "comments": {
+      "write_new": "Scrivi una recensione",
+      "revision": "Revisioni",
+      "title": "Titolo",
+      "description": "Descrizione",
+      "insert": {
+        "title": "Inserisci un titolo",
+        "description": "Inserisci una descrizione",
+        "touch": "Tocca per valutare"
+      }
+    }
+  },
+  "save":"Salva",
+  "cancel":"Cancella",
+  "delete":"Elimina"
 }

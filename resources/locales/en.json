@@ -16,6 +16,20 @@
   },
   "course": {
     "info": "Course info",
-    "ratings": "Ratings"
-  }
+    "ratings": "Ratings",
+    "comments":{
+      "write_new" : "Write a comments",
+      "revision": "Revisions",
+      "title": "Title",
+      "description": "Description",
+      "insert":{
+        "title": "Type a title",
+        "description": "Type a description",
+        "touch": "touch to evaluate"
+      }
+    }
+  },
+  "save":"Save",
+  "cancel":"Cancel",
+  "delete":"Delete"
 }

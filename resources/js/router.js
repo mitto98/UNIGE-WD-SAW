@@ -1,8 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 
-import CoursesDetails from "./pages/CoursesDetails";
-
 Vue.use(VueRouter);
 
 export default new VueRouter({
@@ -31,7 +29,7 @@ export default new VueRouter({
     {
       path: '/areas/:area/courses/:course',
       name: 'course',
-      component: CoursesDetails
+      component: require("./pages/Course").default
     },
     {
       path: '/gdpr',
