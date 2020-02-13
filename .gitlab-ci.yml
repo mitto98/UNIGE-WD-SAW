@@ -69,5 +69,6 @@ deploy-prod:
     - scp docker-compose.yml "$SSH_HOST:~/mugugno/"
     - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose pull laravel'
     - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose up -d'
-    - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose exec laravel mkdir -p storage/framework/{cache,sessions,testing,views}; chown www-data:www-data -R storage/'
+    - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose exec laravel mkdir -p storage/framework/{cache,sessions,testing,views}'
+    - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose exec laravel chown www-data:www-data -R storage/'
     - ssh -tt $SSH_HOST 'cd ~/mugugno; docker-compose exec laravel php artisan migrate --force'
