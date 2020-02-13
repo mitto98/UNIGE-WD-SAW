@@ -13,4 +13,6 @@ Route::prefix('area')->group(function () {
 
 Route::prefix('course')->group(function () {
   Route::get('/{course}', 'CourseController@get');
+  Route::prefix('/{course}/comments','CommentController@index');
 });
+

@@ -11,4 +11,8 @@ class Course extends Model
   public function departments() {
     $this->belongsTo(Department::class, 'department', 'code');
   }
+
+  public function comments() {
+    $this->hasMany(Comment::class,'course');
+  }
 }
