@@ -20,7 +20,7 @@
       large: {
         type: Boolean,
         default: true
-      }
+      },
     },
     computed: {
       faStarHalfAlt: () => faStarHalfAlt,
@@ -48,17 +48,20 @@
 
     &.large {
       svg {
-        font-size: 20px;
-        margin-left: 5px;
-        margin-right: 5px;
-      }
-    }
+    font-size: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }}
 
     svg {
-      font-size: 17px;
+      font-size: 20px;
       margin-left: 2px;
       margin-right: 2px;
     }
+  }
+
+  .star-gray {
+    color: gray !important;;
   }
 
 </style>

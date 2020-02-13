@@ -5,7 +5,7 @@
       <rating-star :rating="4" style="text-align:center"/>
     </div>
     <div class="col-md-7">
-      <rating-bar v-for="i in 5 " :key="i" :rating_number="i" :percentage_number="i*15"/>
+      <rating-bar :ratings="ratings"/>
     </div>
   </div>
 </template>
@@ -16,7 +16,31 @@
 
   export default {
     name: "AverageRating",
-    components: {RatingBar, RatingStar}
+    components: {RatingBar, RatingStar},
+    data: () => ({
+      ratings: [
+        {
+          rating: 5,
+          rating_percentage: 52,
+        },
+        {
+          rating: 4,
+          rating_percentage: 22,
+        },
+        {
+          rating: 3,
+          rating_percentage: 8,
+        },
+        {
+          rating: 2,
+          rating_percentage: 13,
+        },
+        {
+          rating: 1,
+          rating_percentage: 5,
+        },
+      ]
+    }),
 
   }
 </script>

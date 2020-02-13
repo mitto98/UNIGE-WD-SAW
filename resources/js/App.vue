@@ -29,4 +29,37 @@
   .im-blue-da-ba-dee {
     background-color: $primary-blu;
   }
+
+  .h1-mugugno {
+    color: $primary-blu;
+  }
+
+  .align-in-row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .padding-md {
+    padding: 1.25rem;
+  }
+
+  .btn-mugugno-primary {
+    background-color: $primary-blu;
+    color: #ffffff;
+
+    &:hover {
+      background-color: $primary-cyan;
+      color: #ffffff;
+    }
+  }
+  .btn-mugugno-error {
+    background-color: $primary-red;
+    color: #ffffff;
+
+    &:hover {
+      background-color: orange;
+      color: #ffffff;
+    }
+  }
+
 </style>

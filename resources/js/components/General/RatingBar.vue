@@ -1,13 +1,17 @@
 <template>
-  <div class="row">
-    <div class="col-md-2">
-      <p class="number-size">{{rating_number}}</p>
-    </div>
-    <div class="col-md-10">
-      <div class="progress">
-        <div class="progress-bar radius" role="progressbar" :style="barSize" :aria-valuenow="percentage_number"
-             aria-valuemin="0"
-             aria-valuemax="100"></div>
+  <div>
+    <div class="row" v-for="rating in ratings" :key="rating.rating">
+      <div class="col-2">
+        <p class="number-size">{{rating.rating}}</p>
+      </div>
+      <div class="col-10">
+        <div class="progress">
+          <div class="progress-bar radius" role="progressbar"
+               :style="{width: rating.rating_percentage+'%'}"
+               :aria-valuenow="rating.rating_percentage"
+               aria-valuemin="0"
+               aria-valuemax="100"></div>
+        </div>
       </div>
     </div>
   </div>
@@ -16,20 +20,12 @@
 <script>
   export default {
     name: "RatingBar",
-    props: {
-      rating_number: {
-        type: Number,
-        default: 0
-      },
-      percentage_number: {
-        type: Number,
-        default: 0
-      }
-    },
+    props: ['ratings'],
     computed: {
-      barSize() {
+      barSize(rating_percentage) {
+        console.log(this.ratings);
         return {
-          "width": this.percentage_number + "%"
+          "width": rating_percentage + "%"
         };
       }
     }
@@ -42,6 +38,11 @@
 
   .progress-bar {
     background-color: $primary-blu;
+    &:hover {
+      transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      background-color: $primary-cyan;
+      cursor: pointer;
+    }
   }
 
   .number-size {
