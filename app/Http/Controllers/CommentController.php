@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use App\Course;
 
+use App\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -18,7 +19,8 @@ class CommentController extends Controller
         $comment->title = $request->input('title');
         $comment->text = $request->input('text');
         $comment->rating = $request->input('rating');
-        $comment->user = $request->input('user');
+        $owner = User::findOrFail($request->input('user'));
+        $comment->user = $owner->id;
         $course->comments()->save($comment);
     }
 }
