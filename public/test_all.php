@@ -1,14 +1,14 @@
 <?php
 header('Content-Type: text/plain');
-require 'test_login.php';
-require 'test_register.php';
-require 'test_show.php';
-require 'test_update.php';
-require 'test_search.php';
-require 'test_logout.php';
-require 'utils.php';
+require 'tests/test_login.php';
+require 'tests/test_register.php';
+require 'tests/test_show.php';
+require 'tests/test_update.php';
+require 'tests/test_search.php';
+require 'tests/test_logout.php';
+require 'tests/utils.php';
 
-$baseurl =  'http://127.0.0.1:8000';
+$baseurl =  $_GET['baseurl'] ?: 'http://mugugno.mattiadapino.it';
 
 echo "[+] Testing Registration - Login - Show Profile\n";
 
