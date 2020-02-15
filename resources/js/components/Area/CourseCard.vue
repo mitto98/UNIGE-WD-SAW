@@ -27,6 +27,7 @@
     width: 276px;
     padding: 6px;
     list-style: none;
+    vertical-align: top;
 
     div {
       height: 135px;

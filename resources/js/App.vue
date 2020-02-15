@@ -18,6 +18,7 @@
 
 <style lang="scss">
   $border-radius: 0;
+  $border-radius-sm: 0;
   @import "../sass/_variables.scss";
   @import "~bootstrap/scss/bootstrap.scss";
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans|Roboto+Slab&display=swap');

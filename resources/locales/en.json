@@ -10,6 +10,13 @@
     "got_help": "Arrangiati anche in inglese",
     "invalid": "Invalid username or password"
   },
+  "register": {
+    "button": "Sign On",
+    "matricola": "Student no.",
+    "email": "Email",
+    "name": "Name",
+    "repw": "Repeat password"
+  },
   "gdpr": {
     "title": "Data protection policy",
     "content": "Seriously? Someone actually read this stuff?"

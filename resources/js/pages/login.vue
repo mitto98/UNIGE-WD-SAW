@@ -17,6 +17,9 @@
 
           <button type="submit" class="btn btn-primary btn-block">{{$t('login.login')}}</button>
 
+          <router-link :to="{name: 'register'}" class="btn btn-secondary btn-sm btn-block text-white">
+            {{ $t('register.button') }}
+          </router-link>
           <router-link :to="{name: 'reset'}" class="btn btn-link btn-sm btn-block text-white">
             {{ $t('login.forgot_pw') }}
           </router-link>
