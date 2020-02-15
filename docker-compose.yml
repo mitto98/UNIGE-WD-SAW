@@ -21,7 +21,7 @@ services:
       - mysql
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.mugugno.rule=Host(`mugugno.mattiadapino.it`)"
+      - "traefik.http.routers.mugugno.rule=Host(`mugugno.mattiadapino.it`, `opinioni.unigee.it`, `unigee.it`, `www.unigee.it`)"
     networks:
       - default
       - project
