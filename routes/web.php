@@ -12,15 +12,17 @@
 */
 
 
-Route::get('/{any}', 'Controller@index')->where('any', '.*');
+Route::post('/registration.php', 'TestController@registration');
+Route::post('/login.php', 'TestController@login');
+Route::get('/show_profile.php', 'TestController@showProfile');
+Route::post('/update_profile.php', 'TestController@updateProfile');
+Route::get('/logout.php', 'TestController@logout');
+Route::get('/{any}', 'Controller@index')->where('any', '^((?!(api|test.html|[.]*.php)).)*$');
+
 
 ////$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
 //$this->post('login', 'Auth\LoginController@login');
 //$this->post('logout', 'Auth\LoginController@logout')->name('logout');
-//
-//// Registration Routes...
-//$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//$this->post('register', 'Auth\RegisterController@register');
 //
 //// Password Reset Routes...
 //$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
