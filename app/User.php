@@ -13,12 +13,17 @@ class User extends Authenticatable
 
     public $incrementing = false;
     protected $keyType = 'string';
-    protected $fillable = ['name', 'email', 'password',];
+    protected $fillable = ['registration_number', 'name', 'email', 'password',];
     protected $hidden = ['password', 'remember_token',];
 
 
     public function findForPassport($username)
     {
         return $this->where('email', $username)->orWhere('registration_number', $username)->first();
+    }
+
+    public function validateForPassportPasswordGrant($password)
+    {
+        return \Hash::check($password, $this->password);
     }
 }

@@ -22,6 +22,11 @@ export default new VueRouter({
       component: require("./pages/reset").default
     },
     {
+      path: '/register',
+      name: 'register',
+      component: require("./pages/register").default
+    },
+    {
       path: '/areas/:area',
       name: 'area',
       component: require("./pages/Area").default

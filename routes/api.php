@@ -2,8 +2,12 @@
 
 use Illuminate\Http\Request;
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('user')->group(function () {
+    Route::middleware('auth:api')->get('/', function (Request $request) {
+        return $request->user();
+    });
+
+    Route::post('/register', 'UserController@register');
 });
 
 Route::prefix('area')->group(function () {
