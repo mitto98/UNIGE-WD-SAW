@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCoursesUsersTable extends Migration
+class CreateCourseUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateCoursesUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('courses_users', function (Blueprint $table) {
+        Schema::create('course_user', function (Blueprint $table) {
           $table->unsignedBigInteger('course_id');
           $table->foreign('course_id')->references('id')->on('courses');
 
-          $table->string('user_number',8);
-          $table->foreign('user_number')->references('registration_number')->on('users');
+          $table->unsignedBigInteger('user_id');
+          $table->foreign('user_id')->references('id')->on('users');
 
           $table->boolean('finished')->default(false);
         });

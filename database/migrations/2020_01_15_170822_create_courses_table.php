@@ -17,9 +17,8 @@ class CreateCoursesTable extends Migration
       $table->bigIncrements('id');
       $table->string('name', 128);
       $table->integer('average_rating', false, true)->default(0);
-      $table->string('department', 20);
-
-      $table->foreign('department')->references('code')->on('departments');
+      $table->bigInteger('area_id')->unsigned();
+      $table->foreign('area_id')->references('id')->on('areas');
     });
   }
 

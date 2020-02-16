@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
 {
+  protected $with = array('courses');
   public $timestamps = false;
 
-  public function departments() {
-    return $this->hasMany(Department::class, 'area');
+  public function courses() {
+    return $this->hasMany(Course::class);
   }
 }

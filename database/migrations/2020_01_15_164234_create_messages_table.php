@@ -16,13 +16,12 @@ class CreateMessagesTable extends Migration
         Schema::create('messages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('text');
-            $table->string('sender',8);
-            $table->string('receiver',8);
+            $table->unsignedBigInteger('sender_id');
+            $table->unsignedBigInteger('receiver_id');
             $table->timestamps();
 
-
-            $table->foreign('sender')->references('registration_number')->on('users');
-            $table->foreign('receiver')->references('registration_number')->on('users');
+            $table->foreign('sender_id')->references('id')->on('users');
+            $table->foreign('receiver_id')->references('id')->on('users');
 
         });
     }

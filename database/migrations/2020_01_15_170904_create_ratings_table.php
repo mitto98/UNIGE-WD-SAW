@@ -17,13 +17,13 @@ class CreateRatingsTable extends Migration
       $table->bigIncrements('id');
       $table->string('title', 128);
       $table->text('text');
-      $table->unsignedBigInteger('course');
-      $table->integer('rating')->unsigned();
-      $table->string('user', 8);
+        $table->integer('rating')->unsigned();
+      $table->unsignedBigInteger('course_id');
+      $table->unsignedBigInteger('user_id');
       $table->timestamps();
 
-      $table->foreign('course')->references('id')->on('courses');
-      $table->foreign('user')->references('registration_number')->on('users');
+      $table->foreign('course_id')->references('id')->on('courses');
+      $table->foreign('user_id')->references('id')->on('users');
 
     });
   }
