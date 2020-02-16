@@ -22,17 +22,19 @@
     "content": "Seriously? Someone actually read this stuff?"
   },
   "course": {
-    "info": "Course info",
+    "info": "Go to the site",
     "ratings": "Ratings",
     "comments":{
       "write_new" : "Write a comments",
       "revision": "Revisions",
       "title": "Title",
       "description": "Description",
+      "last_update":"Last update",
       "insert":{
         "title": "Type a title",
         "description": "Type a description",
-        "touch": "touch to evaluate"
+        "touch": "touch to evaluate",
+        "evaluate": "Evaluate"
       }
     }
   },

@@ -2,20 +2,17 @@
   <div class="padding-md">
     <div class="row">
       <div class="col-12 col-md-6">
-        <label for="title"><b>{{$t('course.comments.insert.title')}} :</b></label>
-        <input type="text" v-model="new_comment.title" id="title" class="form-control"
-               :placeholder="$t('course.comments.title')">
+        <IFTAInput v-model="new_comment.title"  :required="true"  id="title" type="text" :label="$t('course.comments.title')"/>
       </div>
-      <div class="col-12 col-md-12">
+      <div class="col-12 col-md-6">
         <div class="align-in-row ">
-          <p><b>{{$t('course.comments.insert.touch')}} :</b></p>
+          <p class="size-label"><b>{{$t('course.comments.insert.evaluate')}} * :</b></p>
           <rating-star :rating="new_comment.rating" :large="false"/>
         </div>
       </div>
       <div class="col-12 col-md-12">
-        <label for="text"><b>{{$t('course.comments.insert.description')}} :</b></label>
-        <textarea id="text" v-model="new_comment.message" class="form-control" rows="3"
-                  :placeholder="$t('course.comments.description')"></textarea>
+        <IFTAInput v-model="new_comment.message" id="title" type="text" :required="true" :label="$t('course.comments.description')"
+                   :rows="3"/>
       </div>
     </div>
     <div class="row">
@@ -40,10 +37,12 @@
 
 <script>
   import RatingStar from "../../General/RatingStar";
+  import IFTAInput from "../../../components/IFTAInput";
+
 
   export default {
     name: "InsertComments",
-    components: {RatingStar},
+    components: {RatingStar,IFTAInput},
     data: () => ({
       new_comment: {
         title: "",
@@ -67,6 +66,10 @@
   }
   .align-right-button{
     text-align: end
+  }
+
+  .size-label{
+    font-size: 0.9rem
   }
 
 </style>
