@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\Registered;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,12 +19,14 @@ class UserController extends Controller
             'password' => ['required', 'string', 'min:4'],
         ])->validate();
 
-        User::create([
+        $user = User::create([
             'registration_number' => $request->input('registration_number'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
         ]);
+
+        Mail::to($user)->send(new Registered($user));
 
         return response("Registered");
     }
