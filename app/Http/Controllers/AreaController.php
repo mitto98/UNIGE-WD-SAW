@@ -12,7 +12,6 @@ class AreaController extends Controller
     }
 
     public function get(Area $area) {
-      $area->departments;
       return response()->json($area);
     }
 }
