@@ -17,17 +17,17 @@
                                                                                            @click="() => {$i18n.locale = 'en'}">EN</span>
           </p>
         </li>
-        <li class="nav-item" v-if="userName === ''">
+        <li class="nav-item" v-if="getUserName === ''">
           <router-link :to="{name: 'login'}" class="nav-link">
             <font-awesome-icon icon="user"/>
             Login
           </router-link>
         </li>
-        <li class="nav-item dropdown" v-if="userName !== ''">
+        <li class="nav-item dropdown" v-if="getUserName !== ''">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
             <font-awesome-icon icon="user"/>
-            {{userName}}
+            {{getUserName}}
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" @click="logut">Logout</a>
@@ -45,7 +45,14 @@
     name: "Navbar",
     data: () => ({}),
     computed: {
-      ...mapGetters('user', ["userName"])
+      ...mapGetters('user', ["getUserData"]),
+      getUserName : function () {
+        console.log("dadsadsada")
+        console.log(this.getUserData)
+        var a = this.getUserData
+        console.log(a)
+        return a?.name
+      }
     },
     methods: {
       ...mapActions("user", ["doLogout"]),
