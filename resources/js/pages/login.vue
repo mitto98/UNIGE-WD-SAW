@@ -5,8 +5,8 @@
         <form class="col-sm-12 col-md-6 col-lg-4" @submit.prevent="login">
           <h1 class=" font-weight-bold text-center text-white">Opinioni</h1>
           <img src="/img/estudiantes.png" alt="login image" class="mb-2" width="100%">
-          <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')"/>
-          <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')"/>
+          <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')" :required="true"/>
+          <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')" :required="true"/>
 
           <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">
             {{error}}
@@ -14,8 +14,8 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-
           <button type="submit" class="btn btn-primary btn-block">{{$t('login.login')}}</button>
+          <p class="between-btn">Oppure</p>
 
           <router-link :to="{name: 'register'}" class="btn btn-secondary btn-sm btn-block text-white">
             {{ $t('register.button') }}
@@ -50,13 +50,13 @@
     methods: {
       ...mapActions("user", ["doLogin"]),
       login() {
-        this.doLogin({
+        this.doLogin( {
           email: this.username,
           password: this.password
         }).then(() => {
           this.$router.push("/");
         }).catch(error => {
-          if(error.response.data.error === "invalid_grant") {
+          if (error.response.data.error === "invalid_grant") {
             this.error = this.$t("login.invalid")
           }
         });
@@ -64,3 +64,14 @@
     }
   }
 </script>
+<style scoped lang="scss">
+
+  .between-btn {
+    color: white;
+    text-align: center;
+    font-size: .75rem;
+    margin-top: .85rem;
+    margin-bottom: .85rem;
+  }
+
+</style>

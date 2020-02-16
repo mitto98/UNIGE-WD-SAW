@@ -4,7 +4,7 @@ import store from "./vuex";
 import i18n from "./i18n";
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faUserSecret,  faArrowCircleRight, faUser, faPencilAlt, faSave, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import {faUserSecret,  faArrowCircleRight, faUser, faPencilAlt, faSave, faTimesCircle, faBars } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUserSecret);
@@ -13,6 +13,7 @@ library.add(faUser);
 library.add(faPencilAlt);
 library.add(faSave);
 library.add(faTimesCircle);
+library.add(faBars);
 
 import App from "./App.vue";
 
