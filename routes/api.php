@@ -15,6 +15,17 @@ Route::prefix('area')->group(function () {
   Route::get('/{area}', 'AreaController@get');
 });
 
-Route::prefix('course')->group(function () {
-  Route::get('/{course}', 'CourseController@get');
+Route::prefix('course/{course}')->group(function () {
+  Route::get('/', 'CourseController@get');
+
+  Route::prefix('/comments')->group(function () {
+      Route::get('/', 'CommentController@index');
+      Route::put('/', 'CommentController@store');
+
+      Route::prefix('/{commment}')->group(function () {
+          Route::post('/', 'CommentController@update');
+          Route::delete('/', 'CommentController@delete');
+      });
+  });
 });
+

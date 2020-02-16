@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RatingTrigger extends Migration
+class FixCourseAverageRatingType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class RatingTrigger extends Migration
      */
     public function up()
     {
-        DB::unprepared('
-        CREATE TRIGGER update_rating AFTER INSERT ON `ratings` FOR EACH ROW
-            BEGIN
-                UPDATE courses AS c JOIN ratings as r ON r.course = c.code
-                SET c.average_rating = AVG(r.rating);
-            END
-        ');
+        Schema::table('courses', function (Blueprint $table) {
+            $table->dropColumn('average_rating');
+        });
+        Schema::table('courses', function (Blueprint $table) {
+            $table->double('average_rating');
+        });
     }
 
     /**
