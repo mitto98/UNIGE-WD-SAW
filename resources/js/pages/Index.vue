@@ -24,12 +24,6 @@
       axios.get('/api/area').then(response => {
         this.areas = response.data;
       });
-
-
-      axios.get('/api/user')
-        .then(response => {
-          //console.log("USER RESPONSE", response.data);
-        });
     }
   }
 </script>

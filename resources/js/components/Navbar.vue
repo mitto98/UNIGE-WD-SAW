@@ -43,20 +43,17 @@
 
   export default {
     name: "Navbar",
-    data: () => ({}),
+    // data: () => ({}),
     computed: {
-      ...mapGetters('user', ["getUserData"]),
-      getUserName : function () {
-        console.log("dadsadsada")
-        console.log(this.getUserData)
-        var a = this.getUserData
-        console.log(a)
-        return a?.name
+      ...mapGetters(["user"]),
+      getUserName() {
+        //console.log("dadsadsada", this.user)
+        return this.user?.name
       }
     },
     methods: {
-      ...mapActions("user", ["doLogout"]),
-      logut({}) {
+      ...mapActions("auth", ["doLogout"]),
+      logut() {
         this.doLogout().then(() => {
         }).catch(error => {
           if (error.response.data.error === "invalid_grant") {
