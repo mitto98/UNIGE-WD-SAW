@@ -47,7 +47,8 @@
       new_comment: {
         title: "",
         text: "",
-        rating: 0,
+        rating: 3,
+        course_id: this.$route.params.course,
       }
     })
   }
