@@ -1,8 +1,8 @@
 <template>
   <div class="form-group"
        :class="{'in-focus': hasFocus, error: (!!error && hadBlurred)}">
-    <label :for="id" :class="{visited: !!value}">{{label}}*</label>
-    <input :id="id" :type="type" :value="value"
+    <label :for="id" :class="{visited: !!value}">{{label}} {{required?'*':''}}</label>
+    <input :id="id" :type="type" :value="value" :rows="rows"
            @input="onInput" @focus="onFocus" @blur="onBlur"
            class="form-control">
     <p v-if="!!error && hadBlurred" class="input-error">{{error}}</p>
@@ -12,7 +12,7 @@
 <script>
   export default {
     name: "IFTAInput",
-    props: ['id', 'value', 'label', 'type', 'error'],
+    props: ['id', 'value', 'label', 'type','rows','required','error'],
     data: () => ({
       hasFocus: false,
       hadBlurred: false,

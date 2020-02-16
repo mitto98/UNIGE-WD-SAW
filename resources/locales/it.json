@@ -22,17 +22,19 @@
     "content": "Davvero? Qualcuno legge seriamente queste cose?"
   },
   "course": {
-    "info": "Scheda corsi",
+    "info": "Vai al sito",
     "ratings": "Valutazioni",
     "comments": {
       "write_new": "Scrivi una recensione",
       "revision": "Revisioni",
       "title": "Titolo",
       "description": "Descrizione",
+      "last_update":"Ultimo aggiornamento",
       "insert": {
         "title": "Inserisci un titolo",
         "description": "Inserisci una descrizione",
-        "touch": "Tocca per valutare"
+        "touch": "Tocca per valutare",
+        "evaluate": "Valuta"
       }
     }
   },

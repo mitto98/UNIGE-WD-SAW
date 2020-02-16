@@ -49,6 +49,7 @@
     color: #ffffff;
 
     &:hover {
+      animation: change-color-blue .3s;
       background-color: $primary-cyan;
       color: #ffffff;
     }
@@ -60,6 +61,25 @@
     &:hover {
       background-color: orange;
       color: #ffffff;
+      animation: change-color-red .3s;
+    }
+  }
+
+  @keyframes change-color-blue {
+    0% {
+      background-color: $primary-blu;
+    }
+    100% {
+      background-color: $primary-cyan;
+    }
+  }
+
+  @keyframes change-color-red {
+    0% {
+      background-color: $primary-red;
+    }
+    100% {
+      background-color: orange;
     }
   }
 

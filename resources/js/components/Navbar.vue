@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark py-4">
-    <router-link class="navbar-brand" :to="{name: 'index'}">
-      <img src="/img/loghi/logo_UniGe.svg" alt="UniGe"> Mugugno
-    </router-link>
+      <router-link class="navbar-brand " :to="{name: 'index'}" style="display: flex!important;" >
+        <img src="/img/loghi/logo_UniGe.svg" alt="UniGe"> <p style="margin-left: 5px; font-size: 1.75rem">Opinioni</p>
+      </router-link>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"/>
@@ -84,4 +84,7 @@
     margin-left: auto;
   }
 
+  .style-logo{
+    display: flex;
+  }
 </style>
