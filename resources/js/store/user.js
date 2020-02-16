@@ -70,7 +70,7 @@ export default {
             access_token: token,
             refresh_token: response.data.refresh_token
           });
-          context.dispatch("init", null, { root: true });
+          // context.dispatch("init", null, { root: true });
 
           axios.get(`/api/user`).then(response => {
             context.commit(STORE_USER,{
