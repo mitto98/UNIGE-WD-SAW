@@ -21,11 +21,16 @@
 
       <div class="row">
         <div class="col-12 align-right ">
-          <button type="button" class="btn btn-mugugno-primary" v-on:click="enableInsert" style="font-size: 20px">
-          <span class="badge">
-            {{ $t('course.comments.write_new') }} <font-awesome-icon icon="pencil-alt"/>
-          </span>
+          <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert" style="font-size: 20px">
+            <span class="badge">
+              {{ $t('course.comments.write_new') }} <font-awesome-icon icon="pencil-alt"/>
+            </span>
           </button>
+            <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn" style="font-size: 20px;color:white">
+              <span class="badge">
+                {{ $t('course.comments.log_and_write') }} <font-awesome-icon icon="pencil-alt"/>
+              </span>
+            </router-link>
         </div>
       </div>
 
@@ -46,7 +51,7 @@
 
 <script>
   import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
-
+  import {mapGetters} from "vuex";
   import RatingStar from "../components/General/RatingStar";
   import RatingBar from "../components/General/RatingBar";
   import AverageRating from "../components/Area/CoursesDetails/AverageRating";
@@ -159,6 +164,7 @@
       })
     },
     computed: {
+      ...mapGetters('user', ["isLoggedIn"]),
       faExternalLinkAlt: () => faExternalLinkAlt,
     }
   }

@@ -28,6 +28,7 @@
     "info": "Go to the site",
     "ratings": "Ratings",
     "comments":{
+      "log_and_write": "Log in and write a comments",
       "write_new" : "Write a comments",
       "revision": "Revisions",
       "title": "Title",
