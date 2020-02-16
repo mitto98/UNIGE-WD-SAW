@@ -10,6 +10,9 @@
     "got_help": "Arrangiati anche in inglese",
     "invalid": "Invalid username or password"
   },
+  "logout":{
+    "invalid":"Error during logout"
+  },
   "register": {
     "button": "Sign On",
     "matricola": "Student no.",

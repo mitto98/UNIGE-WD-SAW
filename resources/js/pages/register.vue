@@ -6,15 +6,19 @@
           <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
           <img src="/img/persone.png" alt="login image" class="mb-2" width="100%">
           <IFTAInput v-model="matricola"
-                     id="matricola" type="text"
+                     id="matricola" type="text" :required="true"
                      :label="$t('register.matricola')" :error="matricolaError"/>
-          <IFTAInput v-model="name" id="name" type="text" :label="$t('register.name')"/>
+          <IFTAInput v-model="name"
+                     id="name" type="text" :required="true"
+                     :label="$t('register.name')"/>
           <IFTAInput v-model="mail"
-                     id="email" type="text"
+                     id="email" type="text" :required="true"
                      :label="$t('register.email')" :error="emailError"/>
-          <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')"/>
+          <IFTAInput v-model="password"
+                     id="password" type="password" :required="true"
+                     :label="$t('login.password')"/>
           <IFTAInput v-model="rePassword"
-                     id="repassword" type="password"
+                     id="repassword" type="password" :required="true"
                      :label="$t('register.repw')" :error="reError"/>
 
           <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">

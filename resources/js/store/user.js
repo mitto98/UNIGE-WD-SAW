@@ -4,17 +4,21 @@ const AUTH_REQUEST = "LOGIN";
 const AUTH_SUCCESS = "LOGIN_SUCCESS";
 const AUTH_ERROR = "AUTH_ERROR";
 const AUTH_LOGOUT = "LOGOUT";
+const STORE_USER = "STORE_USER";
+const UNSTORE_USER = "UNSTORE_USER";
 
 export default {
   namespaced: true,
   state: {
     token: localStorage.getItem("user_token") || "",
     refresh_token: localStorage.getItem("refresh_token") || "",
-    status: localStorage.getItem("user_token") ? "success" : "waiting"
+    status: localStorage.getItem("user_token") ? "success" : "waiting",
+    user_name: localStorage.getItem("user_name") || "",
   },
   getters: {
     isLoggedIn: state => state.status === "success" && !!state.token,
-    isLoading: state => state.status === "loading"
+    isLoading: state => state.status === "loading",
+    userName: state => state.user_name
   },
   mutations: {
     [AUTH_REQUEST]: state => {
@@ -38,6 +42,14 @@ export default {
       localStorage.removeItem("refresh_token");
       // remove the axios default header
       delete axios.defaults.headers["Authorization"];
+    },
+    [STORE_USER]: (state, user) =>{
+      localStorage.setItem("user_name",user.user.name)
+      state.user_name = user.user.name
+    },
+    [UNSTORE_USER]: state =>{
+      localStorage.removeItem("user_name")
+      state.user_name = ""
     }
   },
   actions: {
@@ -59,6 +71,12 @@ export default {
             refresh_token: response.data.refresh_token
           });
           context.dispatch("init", null, { root: true });
+
+          axios.get(`/api/user`).then(response => {
+            context.commit(STORE_USER,{
+              user: response.data
+            });
+          });
         });
     },
     doLogout: ({ commit, dispatch }) => {
@@ -66,6 +84,7 @@ export default {
         resolve();
       }).then(()=> {
         commit(AUTH_LOGOUT);
+        commit(UNSTORE_USER);
       });
     },
     renewToken: context => {
@@ -87,6 +106,6 @@ export default {
           });
         });
       }
-    }
+    },
   }
 };

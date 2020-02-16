@@ -10,6 +10,9 @@
     "got_help": "Arrangiati",
     "invalid": "Username o password errata"
   },
+  "logout":{
+    "invalid":"Errore durante il logout"
+  },
   "register": {
     "button": "Registrati",
     "matricola": "Matricola",
