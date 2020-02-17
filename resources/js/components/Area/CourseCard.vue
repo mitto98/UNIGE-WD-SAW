@@ -1,6 +1,6 @@
 <template>
   <div class="course-card">
-    <router-link :to="{name : 'course', params: { area: this.$route.params.area, course: course.id}}">
+    <router-link :to="{name : 'course', params: { area: course.area_id, course: course.id}}">
       <div>
         <h5>{{course.name}}</h5>
         <rating-star :rating="course.rating" :large="false"/>
@@ -43,28 +43,33 @@
 
     cursor: pointer;
     text-decoration: none !important;
+
     div {
       height: 135px;
       padding: 4px;
       background-color: $primary-blu;
       color: white;
       text-align: center;
-      &:hover{
-        animation :change-color-blue .3s;
+
+      &:hover {
+        animation: change-color-blue .3s;
         background-color: $primary-cyan;
       }
+
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-content: center;
+
       a {
         color: white !important;
       }
     }
+
     &:hover {
       padding-left: 18px;
       padding-right: 18px;
-      animation: shift-in   .3s;
+      animation: shift-in .3s;
     }
   }
 </style>

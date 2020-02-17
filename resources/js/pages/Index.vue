@@ -13,7 +13,7 @@
         <div v-if="!searchText" class="col-12 area-container">
           <area-box v-for="area in areas" :key="area.id" :area="area"/>
         </div>
-        <div v-else>
+        <div v-else  class="col-12 area-container">
           <course-card v-for="course in filteredCourses" :key="course.id" :course="course"/>
         </div>
       </div>
