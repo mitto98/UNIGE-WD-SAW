@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <form class="col-sm-12 col-md-6 col-lg-4" @submit.prevent="login">
           <h1 class=" font-weight-bold text-center text-white">Opinioni</h1>
-          <img src="/img/estudiantes.png" alt="login image" class="mb-2" width="100%">
+          <img src="/img/login.svg" alt="login image" class="mb-2" width="100%">
           <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')" :required="true"/>
           <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')" :required="true"/>
 

@@ -24,13 +24,13 @@
           </router-link>
         </li>
         <li class="nav-item dropdown" v-if="userName !== ''">
-          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
+          <button type="button" class="nav-link dropdown-toggle btn btn-link" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
             <font-awesome-icon icon="user"/>
             {{userName}}
-          </a>
+          </button>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" @click="logut">Logout</a>
+            <button type="button" class="dropdown-item btn btn-link" @click="logut">Logout</button>
           </div>
         </li>
       </ul>

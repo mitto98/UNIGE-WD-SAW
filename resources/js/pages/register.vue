@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <form class="col-sm-12 col-md-6 col-lg-4" @submit.prevent="register">
           <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
-          <img src="/img/persone.png" alt="login image" class="mb-2" width="100%">
+          <img src="/img/register.svg" alt="register image" class="mb-2" width="100%">
           <IFTAInput v-model="matricola"
                      id="matricola" type="text" :required="true"
                      :label="$t('register.matricola')" :error="matricolaError"/>

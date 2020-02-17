@@ -1,4 +1,7 @@
 {
+  "home": {
+    "search": "Find your course"
+  },
   "login": {
     "username": "Username",
     "password": "Password",
