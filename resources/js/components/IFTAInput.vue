@@ -2,7 +2,10 @@
   <div class="form-group"
        :class="{'in-focus': hasFocus, error: (!!error && hadBlurred)}">
     <label :for="id" :class="{visited: !!value}">{{label}} {{required?'*':''}}</label>
-    <input :id="id" :type="type" :value="value" :rows="rows"
+    <textarea v-if="rows" :id="id" :value="value" :rows="rows"
+              @input="onInput" @focus="onFocus" @blur="onBlur"
+              class="form-control"></textarea>
+    <input v-else :id="id" :type="type" :value="value"
            @input="onInput" @focus="onFocus" @blur="onBlur"
            class="form-control">
     <p v-if="!!error && hadBlurred" class="input-error">{{error}}</p>

@@ -1,10 +1,20 @@
 <template>
   <div>
-    <div class="landscape mb-4"/>
     <div class="container">
-      <div class="row">
-        <div class="col-12 area-container">
-            <area-box v-for="area in areas" :key="area.id" :area="area"/>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <img src="/img/home.svg" width="100%" alt="home image">
+        </div>
+        <div class="col-md-4 pt-md-5">
+          <h1>Opinioni UniGe</h1>
+          <p>Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova</p>
+        </div>
+        <search v-model="searchText" class="col-md-6  my-5"/>
+        <div v-if="!searchText" class="col-12 area-container">
+          <area-box v-for="area in areas" :key="area.id" :area="area"/>
+        </div>
+        <div v-else>
+          <course-card v-for="course in filteredCourses" :key="course.id" :course="course"/>
         </div>
       </div>
     </div>
@@ -13,37 +23,36 @@
 
 <script>
   import AreaBox from "../components/Home/AreaBox";
+  import Search from "../components/Home/Search";
+  import CourseCard from "../components/Area/CourseCard";
   import axios from "../axios";
 
   export default {
-    components: {AreaBox},
+    components: {AreaBox, Search, CourseCard},
     data: () => ({
-      areas: []
+      areas: [],
+      searchText: null
     }),
     created() {
       axios.get('/api/area').then(response => {
         this.areas = response.data;
       });
-
-
-      axios.get('/api/user')
-        .then(response => {
-          //console.log("USER RESPONSE", response.data);
+    },
+    computed: {
+      filteredCourses() {
+        const result = [];
+        this.areas.forEach(area => {
+          result.push(...area.courses.filter(course =>
+            course.name.toLowerCase().includes(this.searchText.toLowerCase())));
         });
+        return result;
+      }
     }
   }
 </script>
 
 <style lang="scss">
   @import "../../sass/_variables.scss";
-
-  .landscape {
-    height: 256px;
-    background-image: url("/img/home_poster.jpg");
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
 
   .area-container {
     width: 100%;
