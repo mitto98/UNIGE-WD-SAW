@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <average-rating/>
+      <average-rating :average_rating="course.average_rating"/>
 
       <div class="row">
         <div class="col-12 align-right ">

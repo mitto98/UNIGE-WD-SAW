@@ -1,8 +1,8 @@
 <template>
   <div class="row" style="margin-top: 20px">
     <div class="col-md-5 ">
-      <p class="average-rating">4</p>
-      <rating-star :rating="4" style="text-align:center"/>
+      <p class="average-rating">{{average_rating}}</p>
+      <rating-star :rating="average_rating" style="text-align:center"/>
     </div>
     <div class="col-md-7">
       <rating-bar :ratings="ratings"/>
@@ -17,6 +17,7 @@
   export default {
     name: "AverageRating",
     components: {RatingBar, RatingStar},
+    props:["average_rating"],
     data: () => ({
       ratings: [
         {
