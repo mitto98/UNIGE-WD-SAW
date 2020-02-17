@@ -1,7 +1,7 @@
 <template>
-  <p class="star" :class="{large: large}">
-    <font-awesome-icon v-for="i in 5" @mouseover="realRating = i" @click="emitEvent"
-                       :key="i" :icon="(realRating < i ) ?farStar:faStar"/>
+  <p class="star" :class="{large: large}" @mouseleave="hoverRating = 0">
+    <font-awesome-icon v-for="i in 5" @mouseover="hoverRating = i" @click="emitEvent"
+                       :key="i" :icon="shouldBeFull(i) ? farStar : faStar"/>
   </p>
 </template>
 
@@ -20,34 +20,30 @@
         type: Boolean,
         default: true
       },
+      value: {
+        type: Number,
+        default: 0,
+      }
     },
     data: () => ({
-      realRating: null
+      hoverRating: 0
     }),
     methods:{
-      emitEvent : function () {
-        this.$emit('updateRatingStar', this.realRating)
+      emitEvent() {
+        this.$emit('input', this.hoverRating)
+      },
+      shouldBeFull(i) {
+        if (this.hoverRating !== 0) {
+          return this.hoverRating < i;
+        } else {
+          return this.value < i;
+        }
       }
     },
     computed: {
       faStarHalfAlt: () => faStarHalfAlt,
       faStar: () => faStar,
       farStar: () => farStar,
-
-      getRatingFull() {
-        return this.rating
-      },
-
-      noFullStar() {
-        return Math.trunc(this.rating + .49);
-      },
-      haveHalfStar() {
-        const decimal = Number(this.rating % 1).toFixed(2);
-        return (decimal > 0) && (decimal <= .5);
-      },
-      noEmptyStar() {
-        return 5 - (this.noFullStar + (this.haveHalfStar ? 1 : 0));
-      }
     }
   }
 </script>
@@ -69,6 +65,7 @@
       font-size: 20px;
       margin-left: 2px;
       margin-right: 2px;
+      cursor: pointer;
     }
   }
 
