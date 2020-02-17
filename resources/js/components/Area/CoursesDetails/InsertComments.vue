@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="col-12 col-md-12">
-        <IFTAInput v-model="new_comment.message" id="title" type="text" :required="true" :label="$t('course.comments.description')"
+        <IFTAInput v-model="new_comment.text" id="title" type="text" :required="true" :label="$t('course.comments.description')"
                    :rows="3"/>
       </div>
     </div>
@@ -24,7 +24,7 @@
         </button>
       </div>
       <div class="col-6 col-md-6 align-right-button">
-        <button type="button" class="btn btn-mugugno-primary">
+        <button type="button" class="btn btn-mugugno-primary" @click="saveComment">
           <span class="badge">
             {{ $t('save') }} <font-awesome-icon icon="save"/>
           </span>
@@ -38,19 +38,32 @@
 <script>
   import RatingStar from "../../General/RatingStar";
   import IFTAInput from "../../../components/IFTAInput";
-
+  import {mapGetters} from "vuex";
 
   export default {
     name: "InsertComments",
     components: {RatingStar,IFTAInput},
+    created(){
+      this.new_comment.course_id = this.$route.params.course;
+      this.new_comment.user_id = this.user?.id
+    },
+    computed:{
+      ...mapGetters(["user"]),
+    },
     data: () => ({
       new_comment: {
         title: "",
         text: "",
         rating: 3,
-        course_id: this.$route.params.course,
+        user_id: null,
+        course_id : null
       }
-    })
+    }),
+    methods :{
+      saveComment: function () {
+        this.$emit('saveNewComment',this.new_comment)
+      }
+    }
   }
 </script>
 

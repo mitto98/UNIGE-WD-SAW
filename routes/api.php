@@ -19,7 +19,7 @@ Route::prefix('course/{course}')->group(function () {
   Route::get('/', 'CourseController@get');
 
   Route::prefix('/comments')->group(function () {
-      Route::get('/', 'CommentController@index');
+      Route::get('/', 'CommentController@getComments');
       Route::put('/', 'CommentController@store');
 
       Route::prefix('/{commment}')->group(function () {

@@ -4,11 +4,11 @@
       <div class="col-12 col-md-12 spacing">
         <div class="align-in-row">
           <font-awesome-icon icon="user" class="icon-size"/>
-          <p class="name-style">{{comment.name}}</p>
+          <p class="name-style">{{userNameComment}}</p>
         </div>
       </div>
       <div class=" col-12 col-sm-12">
-        <p class="date-style">{{$t('course.comments.last_update')}} : {{comment.update_at}}</p>
+        <p class="date-style">{{$t('course.comments.last_update')}} : {{comment.updated_at}}</p>
       </div>
       <div class="col-12 col-md-12">
         <div class="row" style="line-height: initial">
@@ -30,14 +30,24 @@
 
 <script>
   import RatingStar from "../../General/RatingStar";
+  import {mapGetters} from "vuex";
+  import axios from "../../../axios";
 
   export default {
     name: "Comments",
     components: {RatingStar},
     props: ["comment"],
     data: () => ({
-      isLarge: false
+      isLarge: false,
+      userNameComment:null
     }),
+    mounted(){
+      /*axios.get(`/api/users/`+1).then(response => {
+        console.log(response.data)
+        console.log(this);
+        this.userNameComment = response?.data?.name
+      })*/
+    },
     methods : {
       openComments : function () {
         this.isLarge = !this.isLarge;

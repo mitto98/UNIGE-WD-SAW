@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class CommentController extends Controller
 {
-    public function index(Course $course)
+    public function getComments(Course $course)
     {
         return response()->json($course->comments);
     }
@@ -21,8 +21,9 @@ class CommentController extends Controller
         $comment->title = $request->input('title');
         $comment->text = $request->input('text');
         $comment->rating = $request->input('rating');
-        $comment->user()->associate(User::findOrFail($request->input('user')));
-        $course->comments()->save($comment);
+        $comment->user()->associate(User::findOrFail($request->input('user_id')));
+        $comment->course()->associate(Course::findOrFail($request->input('course_id')));
+        $comment->save();
 
         return response()->json($comment);
     }
