@@ -2,7 +2,7 @@
   <div>
     <div class="row" v-for="rating in ratings" :key="rating.rating">
       <div class="col-">
-        <p class="number-size">{{rating.rating}} - {{rating.count}}</p>
+        <p class="number-size">{{rating.rating}}<!-- - {{rating.count}}--></p>
       </div>
       <div class="col-10">
         <div class="progress mt-2">
