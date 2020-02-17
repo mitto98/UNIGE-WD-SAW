@@ -17,7 +17,7 @@ class FixCourseAverageRatingType extends Migration
             $table->dropColumn('average_rating');
         });
         Schema::table('courses', function (Blueprint $table) {
-            $table->double('average_rating');
+            $table->double('average_rating')->default(0);
         });
     }
 

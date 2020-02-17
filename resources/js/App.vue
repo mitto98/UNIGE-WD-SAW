@@ -7,12 +7,19 @@
 </template>
 
 <script>
+  import {mapActions} from "vuex";
   import Navbar from "./components/Navbar";
   import Footer from "./components/Footer";
 
   export default {
     name: "App",
-    components: {Footer, Navbar}
+    components: {Footer, Navbar},
+    created() {
+      this.init();
+    },
+    methods: {
+      ...mapActions(['init']),
+    }
   }
 </script>
 

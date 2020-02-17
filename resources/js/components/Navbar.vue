@@ -17,17 +17,17 @@
                                                                                            @click="() => {$i18n.locale = 'en'}">EN</span>
           </p>
         </li>
-        <li class="nav-item" v-if="userName === ''">
+        <li v-if="!user" class="nav-item">
           <router-link :to="{name: 'login'}" class="nav-link">
             <font-awesome-icon icon="user"/>
             Login
           </router-link>
         </li>
-        <li class="nav-item dropdown" v-if="userName !== ''">
+        <li v-else class="nav-item dropdown">
           <button type="button" class="nav-link dropdown-toggle btn btn-link" id="navbarDropdown" role="button" data-toggle="dropdown"
              aria-haspopup="true" aria-expanded="false">
             <font-awesome-icon icon="user"/>
-            {{userName}}
+            {{user.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <button type="button" class="dropdown-item btn btn-link" @click="logut">Logout</button>
@@ -43,17 +43,16 @@
 
   export default {
     name: "Navbar",
-    data: () => ({}),
     computed: {
-      ...mapGetters('user', ["userName"])
+      ...mapGetters(["user"]),
     },
     methods: {
-      ...mapActions("user", ["doLogout"]),
+      ...mapActions("auth", ["doLogout"]),
       logut({}) {
         this.doLogout().then(() => {
         }).catch(error => {
           if (error.response.data.error === "invalid_grant") {
-            this.error = this.$t("logout.invalid")
+            this.error = this.$t("logout.invalid");
           }
         });
       },

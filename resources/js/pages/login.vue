@@ -48,7 +48,7 @@
       error: null
     }),
     methods: {
-      ...mapActions("user", ["doLogin"]),
+      ...mapActions("auth", ["doLogin"]),
       login() {
         this.doLogin( {
           email: this.username,

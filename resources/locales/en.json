@@ -28,9 +28,10 @@
     "content": "Seriously? Someone actually read this stuff?"
   },
   "course": {
-    "info": "Go to the site",
-    "ratings": "Ratings",
+    "info": "Course page",
+    "ratings": "Opinions",
     "comments":{
+      "log_and_write": "Log in and write a comments",
       "write_new" : "Write a comments",
       "revision": "Revisions",
       "title": "Title",

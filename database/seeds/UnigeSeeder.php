@@ -301,6 +301,7 @@ class UnigeSeeder extends Seeder
                 $corsi = $area->courses;
                 foreach ($corsi as $cor) {
                     $corVar = new \App\Course();
+                    $corVar->id = $cor->id;
                     $corVar->name = $cor->name;
                     $areaVar->courses()->save($corVar);
                 }

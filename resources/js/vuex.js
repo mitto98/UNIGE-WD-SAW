@@ -1,21 +1,35 @@
 import Vue from "vue";
 import Vuex from 'vuex'
-
-import user from "./store/user";
+import axios from "./axios";
+import auth from "./store/auth";
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    count: 0
+    user: null,
+  },
+  getters: {
+    user: state => state.user,
   },
   mutations: {
-    increment (state) {
-      state.count++
+    setUser: (state, user) => {
+      state.user = user
+    },
+  },
+  actions: {
+    init: ({commit}) => {
+      return axios.get("/api/user")
+        .then(response => {
+          commit('setUser', response.data);
+        }).catch(() => {
+          commit('setUser', null);
+        });
     }
   },
+
   modules: {
-    user,
+    auth,
   }
 });
 
