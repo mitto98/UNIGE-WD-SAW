@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="row" v-for="rating in ratings" :key="rating.rating">
-      <div class="col-2">
-        <p class="number-size">{{rating.rating}}</p>
+      <div class="col-">
+        <p class="number-size">{{rating.rating}} - {{rating.count}}</p>
       </div>
       <div class="col-10">
-        <div class="progress">
+        <div class="progress mt-2">
           <div class="progress-bar radius" role="progressbar"
-               :style="{width: rating.rating_percentage+'%'}"
-               :aria-valuenow="rating.rating_percentage"
+               :style="{width: rating.percentage+'%'}"
+               :aria-valuenow="rating.percentage"
                aria-valuemin="0"
                aria-valuemax="100"></div>
         </div>
@@ -20,15 +20,7 @@
 <script>
   export default {
     name: "RatingBar",
-    props: ['ratings'],
-    computed: {
-      barSize(rating_percentage) {
-        console.log(this.ratings);
-        return {
-          "width": rating_percentage + "%"
-        };
-      }
-    }
+    props: ['ratings']
   }
 </script>
 

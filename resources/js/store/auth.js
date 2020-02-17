@@ -12,13 +12,11 @@ export default {
   state: {
     token: localStorage.getItem("user_token") || "",
     refresh_token: localStorage.getItem("refresh_token") || "",
-    status: localStorage.getItem("user_token") ? "success" : "waiting",
-    user_name: localStorage.getItem("user_name") || "",
+    status: localStorage.getItem("user_token") ? "success" : "waiting"
   },
   getters: {
     isLoggedIn: state => state.status === "success" && !!state.token,
     isLoading: state => state.status === "loading",
-    userName: state => state.user_name
   },
   mutations: {
     [AUTH_REQUEST]: state => {
@@ -43,14 +41,6 @@ export default {
       // remove the axios default header
       delete axios.defaults.headers["Authorization"];
     },
-    [STORE_USER]: (state, user) =>{
-      localStorage.setItem("user_name",user.user.name)
-      state.user_name = user.user.name
-    },
-    [UNSTORE_USER]: state =>{
-      localStorage.removeItem("user_name")
-      state.user_name = ""
-    }
   },
   actions: {
     doLogin: (context, user) => {
@@ -71,12 +61,6 @@ export default {
             refresh_token: response.data.refresh_token
           });
           context.dispatch("init", null, { root: true });
-
-          axios.get(`/api/user`).then(response => {
-            context.commit(STORE_USER,{
-              user: response.data
-            });
-          });
         });
     },
     doLogout: ({ commit, dispatch }) => {
@@ -84,7 +68,8 @@ export default {
         resolve();
       }).then(()=> {
         commit(AUTH_LOGOUT);
-        commit(UNSTORE_USER);
+        // commit(UNSTORE_USER);
+        dispatch("init", null, { root: true })
       });
     },
     renewToken: context => {

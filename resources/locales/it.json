@@ -28,9 +28,10 @@
     "content": "Davvero? Qualcuno legge seriamente queste cose?"
   },
   "course": {
-    "info": "Vai al sito",
-    "ratings": "Valutazioni",
+    "info": "Pagina del corso",
+    "ratings": "Opinioni",
     "comments": {
+      "log_and_write": "Accedi e scrivi una recensione",
       "write_new": "Scrivi una recensione",
       "revision": "Revisioni",
       "title": "Titolo",

@@ -1,11 +1,11 @@
 <template>
   <div class="form-group"
        :class="{'in-focus': hasFocus, error: (!!error && hadBlurred)}">
-    <label :for="id" :class="{visited: !!value}">{{label}} {{required?'*':''}}</label>
-    <textarea v-if="rows" :id="id" :value="value" :rows="rows"
+    <label :for="id" :class="{visited: !!value}">{{label}} {{required ? '*' : ''}}</label>
+    <textarea v-if="rows" :id="id" :value="value" :rows="rows" :required="required"
               @input="onInput" @focus="onFocus" @blur="onBlur"
               class="form-control"></textarea>
-    <input v-else :id="id" :type="type" :value="value"
+    <input v-else :id="id" :type="type" :value="value" :required="required"
            @input="onInput" @focus="onFocus" @blur="onBlur"
            class="form-control">
     <p v-if="!!error && hadBlurred" class="input-error">{{error}}</p>
@@ -15,7 +15,7 @@
 <script>
   export default {
     name: "IFTAInput",
-    props: ['id', 'value', 'label', 'type','rows','required','error'],
+    props: ['id', 'value', 'label', 'type', 'rows', 'required', 'error'],
     data: () => ({
       hasFocus: false,
       hadBlurred: false,
