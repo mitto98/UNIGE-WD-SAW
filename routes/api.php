@@ -17,6 +17,7 @@ Route::prefix('area')->group(function () {
 
 Route::prefix('course/{course}')->group(function () {
   Route::get('/', 'CourseController@get');
+  Route::get('/ratings_bar', 'CourseController@getRatings');
 
   Route::prefix('/comments')->group(function () {
       Route::get('/', 'CommentController@getComments');
