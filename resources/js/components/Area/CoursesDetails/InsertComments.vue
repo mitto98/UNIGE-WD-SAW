@@ -43,11 +43,19 @@
   export default {
     name: "InsertComments",
     components: {RatingStar,IFTAInput},
+    watch: {
+      new_comment(){
+        console.log("Comment Changed");
+        localStorage.setItem("comment_title",this.new_comment.title);
+        localStorage.setItem("comment_text",this.new_comment.text);
+        localStorage.setItem("comment_rating",this.new_comment.rating.toString());
+      }
+    },
     data: () => ({
       new_comment: {
-        title: "",
-        text: "",
-        rating: 0,
+        title: localStorage.getItem("comment_title")||"",
+        text: localStorage.getItem("comment_text")||"",
+        rating: Number.parseInt(localStorage.getItem("comment_rating")||"0"),
       }
     })
   }
