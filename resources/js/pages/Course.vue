@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <average-rating :average_rating="course.average_rating"/>
+      <average-rating :average_rating="course.average_rating" :ratings="this.ratings"/>
 
       <div class="row">
         <div class="col-12 align-right ">
@@ -68,8 +68,14 @@
       },
       saveNewComment:function (new_comment) {
         axios.put('/api/course/'+new_comment?.course_id+'/comments',new_comment).then(response => {
-          this.comments.unshift(response.data)
-          this.is_insert = false
+          this.comments.unshift(response.data);
+          this.is_insert = false;
+          axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
+            this.ratings = response.data;
+          });
+          axios.get(`/api/course/${this.$route.params.course}`).then(response => {
+            this.course = response.data;
+          });
         });
 
       }
@@ -77,15 +83,18 @@
     data: () => ({
       is_insert:false,
       course: null,
-      comments: []
+      comments: [],
+      ratings: []
     }),
     created() {
       axios.get(`/api/course/${this.$route.params.course}`).then(response => {
         this.course = response.data;
-      })
+      });
       axios.get(`/api/course/${this.$route.params.course}/comments`).then(response => {
-        console.log(response)
         this.comments = response.data;
+      });
+      axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
+        this.ratings = response.data;
       })
 
     },

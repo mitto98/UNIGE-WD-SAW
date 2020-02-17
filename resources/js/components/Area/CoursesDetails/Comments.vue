@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12 spacing">
         <div class="align-in-row">
           <font-awesome-icon icon="user" class="icon-size"/>
-          <p class="name-style">{{userNameComment}}</p>
+          <p class="name-style"></p>
         </div>
       </div>
       <div class=" col-12 col-sm-12">
@@ -15,8 +15,8 @@
           <div class="col-12">
             <rating-star :rating="comment.rating" :large="false"/>
           </div>
-          <div class=" col-12 ">
-            <p class="title-style"><b>{{comment.title}}</b></p>
+          <div class=" col-12  col-md-6">
+            <p class="title-style text-style"><b>{{comment.title}}</b></p>
           </div>
         </div>
       </div>
@@ -30,24 +30,14 @@
 
 <script>
   import RatingStar from "../../General/RatingStar";
-  import {mapGetters} from "vuex";
-  import axios from "../../../axios";
 
   export default {
     name: "Comments",
     components: {RatingStar},
     props: ["comment"],
     data: () => ({
-      isLarge: false,
-      userNameComment:null
+      isLarge: false
     }),
-    mounted(){
-      /*axios.get(`/api/users/`+1).then(response => {
-        console.log(response.data)
-        console.log(this);
-        this.userNameComment = response?.data?.name
-      })*/
-    },
     methods : {
       openComments : function () {
         this.isLarge = !this.isLarge;
@@ -72,7 +62,7 @@
 
   .text-style {
     text-overflow: ellipsis;
-
+    word-break: break-all;
     /* Required for text-overflow to do anything */
     //white-space: nowrap;
     overflow: hidden;

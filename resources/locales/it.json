@@ -1,6 +1,8 @@
 {
   "home": {
-    "search": "Cerca il tuo corso"
+    "search": "Cerca il tuo corso",
+    "opinions": "Opinioni UniGe",
+    "what_is": "Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova"
   },
   "login": {
     "username": "Username",

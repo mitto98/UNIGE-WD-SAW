@@ -13,22 +13,11 @@
 <script>
   import RatingStar from "../../General/RatingStar";
   import RatingBar from "../../General/RatingBar";
-  import axios from "../../../axios";
 
   export default {
     name: "AverageRating",
     components: {RatingBar, RatingStar},
-    props:["average_rating"],
-    created(){
-      axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
-        console.log(response)
-        this.ratings = response.data;
-      })
-    },
-    data: () => ({
-      ratings: []
-    }),
-
+    props:["average_rating","ratings"],
   }
 </script>
 
