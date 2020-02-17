@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    protected $with = array('name');
+    protected $with = array('user');
 
     public function user() {
         return $this->belongsTo(User::class);

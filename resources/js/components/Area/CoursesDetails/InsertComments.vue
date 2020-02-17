@@ -1,8 +1,8 @@
 <template>
-  <form @submit.prevent="saveComment">
+  <form @submit.prevent="saveComment" class="padding-md">
     <div class="row">
       <div class="col-12 col-md-6">
-        <IFTAInput v-model="new_comment.title"  :required="true"  id="title" type="text" :label="$t('course.comments.title')"/>
+        <IFTAInput v-model="new_comment.title" :error="titleError" :required="true"  id="title" type="text" :label="$t('course.comments.title')"/>
       </div>
       <div class="col-12 col-md-6">
         <div class="align-in-row ">
@@ -46,6 +46,10 @@
     },
     computed:{
       ...mapGetters(["user"]),
+      titleError(){
+        if(this.new_comment.title.length > 128)
+          return "Titolo troppo lungo"
+      }
     },
     data: () => ({
       new_comment: {

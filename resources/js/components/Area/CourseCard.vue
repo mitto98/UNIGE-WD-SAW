@@ -60,16 +60,21 @@
       flex-direction: column;
       justify-content: center;
       align-content: center;
-
       a {
         color: white !important;
       }
     }
-
     &:hover {
       padding-left: 18px;
       padding-right: 18px;
       animation: shift-in .3s;
+    }
+  }
+
+  a {
+    color: white !important;
+    &:hover{
+      color: white !important;
     }
   }
 </style>

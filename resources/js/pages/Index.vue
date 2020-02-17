@@ -6,8 +6,8 @@
           <img src="/img/home.svg" width="100%" alt="home image">
         </div>
         <div class="col-md-4 pt-md-5">
-          <h1>Opinioni UniGe</h1>
-          <p>Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova</p>
+          <h1>{{$t('home.opinions')}}</h1>
+          <p>{{$t('home.what_is')}}</p>
         </div>
         <search v-model="searchText" class="col-md-6  my-5"/>
         <div v-if="!searchText" class="col-12 area-container">

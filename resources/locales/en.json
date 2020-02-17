@@ -1,6 +1,8 @@
 {
   "home": {
-    "search": "Find your course"
+    "search": "Find your course",
+    "opinions": "Opinioni UniGe",
+    "what_is": "What students thinks about the courses of the University of Genoa"
   },
   "login": {
     "username": "Username",
