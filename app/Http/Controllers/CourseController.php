@@ -39,8 +39,12 @@ class CourseController extends Controller
             ],
         ];
 
-        for ($i = 0; $i < 5; $i++)
-            $return[$i]['percentage'] = $return[$i]['count'] * 100 / $total;
+        for ($i = 0; $i < 5; $i++) {
+            if ($total == 0)
+                $return[$i]['percentage'] = 0;
+            else
+                $return[$i]['percentage'] = $return[$i]['count'] * 100 / $total;
+        }
 
         return $return;
     }
