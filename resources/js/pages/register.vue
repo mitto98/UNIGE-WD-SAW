@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <form class="col-sm-12 col-md-6 col-lg-4" @submit.prevent="register">
-          <h1 class=" font-weight-bold text-center text-white">Mugugno</h1>
+          <h1 class=" font-weight-bold text-center text-white">Opinioni UniGe</h1>
           <img src="/img/register.svg" alt="register image" class="mb-2" width="100%">
           <IFTAInput v-model="matricola"
                      id="matricola" type="text" :required="true"
@@ -62,7 +62,7 @@
           return "Formato non corretto";
       },
       matricolaError(string) {
-        if (!(/[sS][0-9]{7}/i).test(this.matricola))
+        if (!(/[sS][0-9]{7}$/i).test(this.matricola))
           return "Formato matricola non corretto";
       },
       isSubmittable() {

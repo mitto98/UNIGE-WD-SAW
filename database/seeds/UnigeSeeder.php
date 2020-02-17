@@ -13,12 +13,16 @@ class UnigeSeeder extends Seeder
       "text_color": "#FFF",
       "courses": [
         {
-          "name": "Scienze dell\'Archetitettura",
+          "name": "Scienze dell\'Archetettura",
           "id": 8694
         },
         {
           "name": "Design del Prodotto e della Nautica",
           "id": 9274
+        },
+        {
+          "name": "Design del prodotto e dell\'evento",
+          "id": 9007
         }
       ]
     },

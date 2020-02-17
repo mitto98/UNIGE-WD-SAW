@@ -14,7 +14,7 @@ class User extends Authenticatable
     public $incrementing = false;
     protected $keyType = 'string';
     protected $fillable = ['registration_number', 'name', 'email', 'password',];
-    protected $hidden = ['password', 'remember_token',];
+    protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at'];
 
 
     public function findForPassport($username)
