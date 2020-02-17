@@ -63,14 +63,14 @@
       }
     },
     data: () => ({
-      is_insert:false,
+      is_insert:thereIsACommentInLocalStorage(),
       course: null,
       comments: [
         {
           id: 1,
           title: "Bello ma",
           name: "Davide Cardo",
-          text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae nulla feugiat, varius massa ac, tempus nisl. In consequat lorem sit amet faucibus pretium. ",
+          text: "Dov'è Bugo???",
           rating: 3.5,
           update_at: '13/12/2019'
         },
@@ -161,6 +161,18 @@
     computed: {
       faExternalLinkAlt: () => faExternalLinkAlt,
     }
+  }
+
+  /**
+   * @desc check is there is any element related to a writing comment in the local storage
+   * @returns {boolean}
+   */
+  function thereIsACommentInLocalStorage() {
+    let value = false;
+    value = value||!([null,""]).includes(localStorage.getItem("comment_title"));
+    value = value||!([null,""]).includes(localStorage.getItem("comment_text"));
+    value = value||!([null,""]).includes(localStorage.getItem("comment_rating"));
+    return value;
   }
 </script>
 
