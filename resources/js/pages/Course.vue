@@ -34,7 +34,7 @@
           <h2>{{ $t('course.comments.revision')}} : {{comments.length}}</h2>
         </div>
         <div v-if="is_insert" class="view-insert">
-          <insert-comments />
+          <insert-comments/>
         </div>
         <div>
           <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
@@ -57,13 +57,13 @@
   export default {
     name: "CoursesDetails",
     components: {InsertComments, Comments, AverageRating, RatingBar, RatingStar},
-    methods:{
-      enableInsert:function () {
+    methods: {
+      enableInsert: function () {
         this.is_insert = !this.is_insert
       }
     },
     data: () => ({
-      is_insert:thereIsACommentInLocalStorage(),
+      is_insert: thereIsACommentInLocalStorage(),
       course: null,
       comments: [
         {
@@ -76,10 +76,10 @@
         },
         {
           id: 2,
-          title: "Molto soddisfatto",
-          name: "Mattia Dapino",
-          text: "Cras accumsan dictum nunc at posuere. Aliquam aliquet malesuada blandit. Phasellus faucibus dolor nec turpis iaculis porttitor.",
-          rating: 4.8,
+          title: "Ristoratori, sci siamo",
+          name: "Alessandro Borghese",
+          text: "Attenzione però! Nulla è ancora è desciso, perche manca il mio voto che potrebbe confermare o ribbaltare completamente il risultato. Qui nella busta sci'è il nome del vincitore, ma per sapere chi è dovete salire in macchina. Io vi aspetterò davanti al ristorante del vinscitore",
+          rating: 0.0,
           update_at: '13/12/2019'
         },
         {
@@ -138,7 +138,7 @@
         {
           id: 9,
           title: "Accettabile",
-          name:"Donaldo Trampolino",
+          name: "Donaldo Trampolino",
           text: "Quisque nisi nibh, luctus porttitor fringilla in, semper vel ligula. Ut sagittis ligula aliquam, luctus quam id, luctus sem.",
           rating: 4,
           update_at: '13/12/2019'
@@ -169,9 +169,9 @@
    */
   function thereIsACommentInLocalStorage() {
     let value = false;
-    value = value||!([null,""]).includes(localStorage.getItem("comment_title"));
-    value = value||!([null,""]).includes(localStorage.getItem("comment_text"));
-    value = value||!([null,""]).includes(localStorage.getItem("comment_rating"));
+    value = value || !([null, ""]).includes(localStorage.getItem("comment_title"));
+    value = value || !([null, ""]).includes(localStorage.getItem("comment_text"));
+    value = value || !([null, ""]).includes(localStorage.getItem("comment_rating"));
     return value;
   }
 </script>
@@ -198,7 +198,6 @@
   }
 
 
-
   hr {
     border: 0;
     border-top: 0.10rem solid rgba(0, 0, 0, 0.1);
@@ -216,7 +215,7 @@
     }
 
     to {
-     height: 100%;
+      height: 100%;
     }
   }
 
