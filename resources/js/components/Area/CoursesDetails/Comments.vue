@@ -4,7 +4,7 @@
       <div class="col-12 col-md-12 spacing">
         <div class="align-in-row">
           <font-awesome-icon icon="user" class="icon-size"/>
-          <p class="name-style"></p>
+          <p class="name-style">{{comment.user.name}}</p>
         </div>
       </div>
       <div class=" col-12 col-sm-12">
