@@ -39,7 +39,7 @@
           <h2>{{ $t('course.comments.revision')}}</h2>
         </div>
         <div v-if="is_insert" class="view-insert">
-          <insert-comments v-on:saveNewComment="saveNewComment"/>
+          <insert-comments v-on:saveNewComment="saveNewComment"v-on:closeInsertComment="closeInsertComment"/>
         </div>
         <div>
           <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
@@ -66,19 +66,21 @@
       enableInsert: function () {
         this.is_insert = !this.is_insert
       },
+      closeInsertComment:function(){
+        this.is_insert = false
+      },
       saveNewComment:function (new_comment) {
         axios.put('/api/course/'+new_comment?.course_id+'/comments',new_comment).then(response => {
           this.comments.unshift(response.data);
           this.is_insert = false;
           axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
-            this.ratings = response.data;
+            this.ratings = response.data.reverse();
           });
           axios.get(`/api/course/${this.$route.params.course}`).then(response => {
             this.course = response.data;
           });
         });
-
-      }
+      },
     },
     data: () => ({
       is_insert: thereIsACommentInLocalStorage(),
@@ -94,7 +96,7 @@
         this.comments = response.data;
       });
       axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
-        this.ratings = response.data;
+        this.ratings = response.data.reverse();
       })
 
     },

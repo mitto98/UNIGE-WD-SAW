@@ -22,9 +22,9 @@
             {{ $t('save') }} <font-awesome-icon icon="save"/>
           </span>
         </button>
-        <button type="button" class="btn btn-mugugno-error float-right mr-3">
+        <button type="button" class="btn btn-mugugno-error float-right mr-3" @click="emitEventClose">
           <span class="badge">
-            {{ $t('delete') }} <font-awesome-icon icon="times-circle"/>
+            {{ $t('cancel') }} <font-awesome-icon icon="times-circle"/>
           </span>
         </button>
       </div>
@@ -95,6 +95,12 @@
         localStorage.removeItem("comment_title");
         localStorage.removeItem("comment_text");
         localStorage.removeItem("comment_rating");
+      },
+      emitEventClose:function(){
+        this.$emit('closeInsertComment')
+      },
+      updateRatingStar : function (rating) {
+        this.new_comment.rating = rating
       }
     }
   }
