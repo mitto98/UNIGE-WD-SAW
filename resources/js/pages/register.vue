@@ -28,7 +28,9 @@
             </button>
           </div>
 
-          <button type="submit" class="btn btn-primary btn-block" :disabled="!isSubmittable">{{$t('register.button')}}
+          <button type="submit" class="btn btn-primary btn-block" :disabled="!isSubmittable || loading">
+            <p class="button-text" v-if="!loading">{{$t('register.button')}}</p>
+            <spinner v-if="loading"/>
           </button>
         </form>
       </div>
@@ -40,17 +42,19 @@
   import {mapActions} from "vuex";
   import IFTAInput from "../components/IFTAInput";
   import axios from "../axios";
+  import Spinner from "../components/General/Spinner";
 
   export default {
     name: "login",
-    components: {IFTAInput},
+    components: {Spinner, IFTAInput},
     data: () => ({
       matricola: "",
       mail: "",
       name: "",
       password: "",
       rePassword: "",
-      error: ""
+      error: "",
+      loading: false,
     }),
     computed: {
       reError() {
@@ -76,17 +80,20 @@
     methods: {
       ...mapActions("user", ["doLogin"]),
       register() {
+        this.loading = true;
         axios.post('/api/user/register', {
           registration_number: this.matricola,
           name: this.name,
           email: this.mail,
           password: this.password,
         }).then(response => {
+          this.loading = false;
           this.doLogin({email: this.mail, password: this.password})
             .then(() => {
               this.$router.push("/");
             });
         }).catch(error => {
+          this.loading = false;
           if (error.response.status === 422)
             this.error = Object.entries(error.response.data.errors)[0][1][0];
         });
@@ -94,3 +101,11 @@
     }
   }
 </script>
+
+<style scoped>
+
+  .button-text{
+    margin-bottom: 0;
+  }
+
+</style>

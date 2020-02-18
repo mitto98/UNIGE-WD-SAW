@@ -14,7 +14,10 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <button type="submit" class="btn btn-primary btn-block">{{$t('login.login')}}</button>
+          <button type="submit" class="btn btn-primary btn-block" :disabled="loading">
+            <p v-if="!loading" class="button-text">{{$t('login.login')}}</p>
+            <spinner v-if="loading"/>
+          </button>
           <p class="between-btn">Oppure</p>
 
           <router-link :to="{name: 'register'}" class="btn btn-secondary btn-sm btn-block text-white">
@@ -38,24 +41,29 @@
 <script>
   import {mapActions} from "vuex";
   import IFTAInput from "../components/IFTAInput";
+  import Spinner from "../components/General/Spinner";
 
   export default {
     name: "login",
-    components: {IFTAInput},
+    components: {Spinner, IFTAInput},
     data: () => ({
       username: "",
       password: "",
-      error: null
+      error: null,
+      loading:false
     }),
     methods: {
       ...mapActions("auth", ["doLogin"]),
       login() {
+        this.loading = true;
         this.doLogin( {
           email: this.username,
           password: this.password
         }).then(() => {
+          this.loading = false;
           this.$router.push("/");
         }).catch(error => {
+          this.loading = false;
           if (error.response.data.error === "invalid_grant") {
             this.error = this.$t("login.invalid")
           }
@@ -72,6 +80,9 @@
     font-size: .75rem;
     margin-top: .85rem;
     margin-bottom: .85rem;
+  }
+  .button-text{
+    margin-bottom: 0;
   }
 
 </style>

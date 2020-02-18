@@ -5,7 +5,7 @@
         <div class="col-md-8">
           <img src="/img/home.svg" width="100%" alt="home image">
         </div>
-        <div class="col-md-4 pt-md-5">
+        <div class="col-md-4 pt-md-5" style=" margin-top: auto; margin-bottom: auto;">
           <h1>{{$t('home.opinions')}}</h1>
           <p>{{$t('home.what_is')}}</p>
         </div>

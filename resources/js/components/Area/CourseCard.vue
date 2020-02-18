@@ -3,7 +3,7 @@
     <router-link :to="{name : 'course', params: { area: course.area_id, course: course.id}}">
       <div>
         <h5>{{course.name}}</h5>
-        <rating-star :rating="course.rating" :large="false"/>
+        <rating-star :rating="course.average_rating" :large="false"/>
       </div>
     </router-link>
 
