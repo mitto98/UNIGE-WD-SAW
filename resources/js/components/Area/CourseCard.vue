@@ -6,7 +6,6 @@
         <rating-star :rating="course.average_rating" :large="false"/>
       </div>
     </router-link>
-
   </div>
 </template>
 
@@ -73,7 +72,7 @@
 
   a {
     color: white !important;
-    &:hover{
+    &:hover {
       color: white !important;
     }
   }

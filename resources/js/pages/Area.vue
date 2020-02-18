@@ -3,8 +3,8 @@
     <div v-if="area">
         <h5 class="font-weight-bold">{{area.name}}</h5>
 <!--        <p style="font-size: 13px">{{department.name}}</p>-->
-        <div class="courses">
-          <course-card v-for="course in area.courses" :key="course.id" :course="course"/>
+        <div class="row">
+            <course-card v-for="course in area.courses" :key="course.id" :course="course" class="col-6 col-sm-6 col-md-4 col-lg-3"/>
         </div>
     </div>
   </div>
