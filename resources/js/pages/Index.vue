@@ -13,8 +13,12 @@
         <div v-if="!searchText" class="col-12 area-container">
           <area-box v-for="area in areas" :key="area.id" :area="area"/>
         </div>
-        <div v-else  class="row area-container">
-          <course-card v-for="course in filteredCourses" :key="course.id" :course="course" class="col-6 col-sm-6 col-md-4 col-lg-3"/>
+        <div v-else class="row area-container">
+            <course-card v-for="course in filteredCourses" :key="course.id" :course="course"
+                         class="col-6 col-sm-6 col-md-4 col-lg-3"/>
+          <div v-if="!filteredCourses.length" style="text-align: center; width: 100%;">
+            <p class="no-result-style"><i>{{$t('no_result')}}</i></p>
+          </div>
         </div>
       </div>
     </div>
@@ -57,5 +61,11 @@
   .area-container {
     width: 100%;
     text-align: center;
+  }
+
+  .no-result-style {
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem
   }
 </style>
