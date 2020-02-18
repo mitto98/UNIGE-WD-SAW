@@ -14,10 +14,6 @@
                         <rating-star :rating="comment.rating" :large="false"/>
                     </div>
                     <div class="col-12">
-                        <p class="text-muted date-style">{{$t('course.comments.last_update')}} :
-                            {{formatDate(comment.updated_at)}}</p>
-                    </div>
-                    <div class="col-12">
                         <p class="title-style text-style"><b>{{comment.title}}</b></p>
                     </div>
                 </div>
@@ -34,6 +30,10 @@
                         }}
                     </button>
                 </p>
+            </div>
+            <div class="col-12">
+                <p class="text-muted date-style">{{$t('course.comments.last_update')}} :
+                    {{formatDate(comment.updated_at)}}</p>
             </div>
         </div>
         <hr/>

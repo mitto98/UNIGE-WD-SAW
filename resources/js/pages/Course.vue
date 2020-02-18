@@ -19,7 +19,7 @@
 
       <average-rating :average_rating="course.average_rating" :ratings="this.ratings"/>
 
-      <div v-if="!!myComment" class="row mt-4">
+      <div v-if="!myComment" class="row mt-4">
         <div  v-if="!is_insert" class="col-12 align-right">
           <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert" style="font-size: 20px">
             <span class="badge">
@@ -32,9 +32,6 @@
               </span>
           </router-link>
         </div>
-
-<!--        <div class="col-md-9">-->
-<!--        </div>-->
         <div v-if="is_insert" class="view-insert">
           <h2>{{ $t('course.comments.revision')}}</h2>
           <insert-comments v-on:saveNewComment="saveNewComment"v-on:closeInsertComment="closeInsertComment"/>
