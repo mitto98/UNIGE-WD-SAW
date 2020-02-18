@@ -91,7 +91,6 @@
         this.emptyLocalStorage();
       },
       emptyLocalStorage() {
-        console.warn("TESTAMI, PULCE!!");
         localStorage.removeItem("comment_title");
         localStorage.removeItem("comment_text");
         localStorage.removeItem("comment_rating");
