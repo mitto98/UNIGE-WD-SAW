@@ -23,6 +23,11 @@ export default new VueRouter({
       component: require("./pages/reset").default
     },
     {
+      path: '/reset/:key',
+      name: 'doReset',
+      component: require("./pages/doReset").default
+    },
+    {
       path: '/register',
       name: 'register',
       component: require("./pages/register").default

@@ -15,8 +15,8 @@
     "got_help": "Arrangiati anche in inglese",
     "invalid": "Invalid username or password"
   },
-  "logout":{
-    "invalid":"Error during logout"
+  "logout": {
+    "invalid": "Error during logout"
   },
   "register": {
     "button": "Sign On",
@@ -32,16 +32,16 @@
   "course": {
     "info": "Course page",
     "ratings": "Opinions",
-    "comments":{
+    "comments": {
       "log_and_write": "Log in and write a comments",
-      "write_new" : "Write a comments",
+      "write_new": "Write a comments",
       "revision": "Revisions",
       "title": "Title",
       "description": "Description",
-      "last_update":"Last update",
+      "last_update": "Last update",
       "show_more": "Show more",
       "show_less": "Show less",
-      "insert":{
+      "insert": {
         "title": "Type a title",
         "description": "Type a description",
         "touch": "touch to evaluate",
@@ -49,12 +49,16 @@
       }
     }
   },
-  "notFound": {
-  "description": "Page not found",
-  "link": "Back to the homepage"
+  "reset": {
+    "done": "Done! Check your email"
   },
-  "save":"Save",
-  "cancel":"Cancel",
-  "delete":"Delete",
-  "no_result":"No results"
+  "notFound": {
+    "description": "Page not found",
+    "link": "Back to the homepage"
+  },
+  "save": "Save",
+  "cancel": "Cancel",
+  "delete": "Delete",
+  "no_result": "No results",
+  "unknown_error": "Something strange happened, try again :/"
 }

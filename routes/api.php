@@ -3,11 +3,14 @@
 use Illuminate\Http\Request;
 
 Route::prefix('user')->group(function () {
-    Route::middleware('auth:api')->get('/', function (Request $request) {
-        return $request->user();
-    });
+    Route::middleware('auth:api')->get('/', 'UserController@current');
 
     Route::post('/register', 'UserController@register');
+
+    Route::post('/reset', 'UserController@reset');
+    Route::get('/reset/{token}', 'UserController@hasReset');
+    Route::post('/reset/{token}', 'UserController@doReset');
+
 });
 
 Route::prefix('area')->group(function () {
