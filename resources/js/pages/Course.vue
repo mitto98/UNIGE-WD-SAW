@@ -19,31 +19,34 @@
 
       <average-rating :average_rating="course.average_rating" :ratings="this.ratings"/>
 
-      <div class="row">
-        <div class="col-12 align-right ">
+      <div v-if="!!myComment" class="row mt-4">
+        <div  v-if="!is_insert" class="col-12 align-right">
           <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert" style="font-size: 20px">
             <span class="badge">
               {{ $t('course.comments.write_new') }} <font-awesome-icon icon="pencil-alt"/>
             </span>
           </button>
-            <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn" style="font-size: 20px;color:white">
+          <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn" style="font-size: 20px;color:white">
               <span class="badge">
                 {{ $t('course.comments.log_and_write') }} <font-awesome-icon icon="pencil-alt"/>
               </span>
-            </router-link>
+          </router-link>
+        </div>
+
+<!--        <div class="col-md-9">-->
+<!--        </div>-->
+        <div v-if="is_insert" class="view-insert">
+          <h2>{{ $t('course.comments.revision')}}</h2>
+          <insert-comments v-on:saveNewComment="saveNewComment"v-on:closeInsertComment="closeInsertComment"/>
         </div>
       </div>
 
-      <div class="row separe-comments">
-        <div class="col-md-9">
-          <h2>{{ $t('course.comments.revision')}}</h2>
-        </div>
-        <div v-if="is_insert" class="view-insert">
-          <insert-comments v-on:saveNewComment="saveNewComment"v-on:closeInsertComment="closeInsertComment"/>
-        </div>
-        <div>
+      <div v-else>
+        <comments :comment="myComment"/>
+      </div>
+
+      <div class="row mt-4">
           <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
-        </div>
       </div>
     </div>
   </div>
@@ -101,8 +104,15 @@
 
     },
     computed: {
+      ...mapGetters(['user']),
       ...mapGetters('auth', ["isLoggedIn"]),
       faExternalLinkAlt: () => faExternalLinkAlt,
+      myComment() {
+        if (this.user) {
+          return this.comments.find(c => c.user_id === this.user.id);
+        }
+        return null;
+      }
     }
   }
 
@@ -129,10 +139,6 @@
 
   .align-right {
     margin-left: auto;
-  }
-
-  .separe-comments {
-    margin-top: 3rem;
   }
 
   .row {

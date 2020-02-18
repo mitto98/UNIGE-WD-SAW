@@ -2,7 +2,7 @@
   <form @submit.prevent="saveComment" class="padding-md">
     <div class="row">
       <div class="col-12 col-md-6">
-        <IFTAInput v-model="new_comment.title" :error="titleError" :required="true"  id="title" type="text"
+        <IFTAInput v-model="new_comment.title" :error="titleError" :required="true" id="title" type="text"
                    :label="$t('course.comments.title')"/>
       </div>
       <div class="col-12 col-md-6">
@@ -94,8 +94,14 @@
         localStorage.removeItem("comment_title");
         localStorage.removeItem("comment_text");
         localStorage.removeItem("comment_rating");
+        this.new_comment = {
+          title: "",
+          text: "",
+          rating: 0
+        }
       },
       emitEventClose:function(){
+        this.emptyLocalStorage();
         this.$emit('closeInsertComment')
       },
       updateRatingStar : function (rating) {
