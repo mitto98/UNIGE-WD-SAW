@@ -1,5 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
+import not_found from "./pages/not_found";
 
 Vue.use(VueRouter);
 
@@ -46,5 +47,10 @@ export default new VueRouter({
       name: 'help',
       component: require("./pages/help").default
     },
+    {
+      path: '*',
+      name: "not_found",
+      component: require('./pages/not_found').default
+    }
   ],
 });

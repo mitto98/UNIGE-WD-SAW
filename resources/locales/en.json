@@ -47,6 +47,10 @@
       }
     }
   },
+  "notFound": {
+  "description": "Page not found",
+  "link": "Back to the homepage"
+  },
   "save":"Save",
   "cancel":"Cancel",
   "delete":"Delete"
