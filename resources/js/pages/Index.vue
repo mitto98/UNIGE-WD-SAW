@@ -15,7 +15,7 @@
         </div>
         <div v-else class="row area-container">
             <course-card v-for="course in filteredCourses" :key="course.id" :course="course"
-                         class="col-6 col-sm-6 col-md-4 col-lg-3"/>
+                         class="col-12 col-sm-6 col-md-4 col-lg-3"/>
           <div v-if="!filteredCourses.length" style="text-align: center; width: 100%;">
             <p class="no-result-style"><i>{{$t('no_result')}}</i></p>
           </div>
