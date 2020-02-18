@@ -18,14 +18,3 @@ Route::get('/show_profile.php', 'TestController@showProfile');
 Route::post('/update_profile.php', 'TestController@updateProfile');
 Route::get('/logout.php', 'TestController@logout');
 Route::get('/{any}', 'Controller@index')->where('any', '^((?!(api|test.html|[.]*.php)).)*$');
-
-
-////$this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-//$this->post('login', 'Auth\LoginController@login');
-//$this->post('logout', 'Auth\LoginController@logout')->name('logout');
-//
-//// Password Reset Routes...
-//$this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-//$this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-//$this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-//$this->post('password/reset', 'Auth\ResetPasswordController@reset');

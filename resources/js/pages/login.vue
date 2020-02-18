@@ -8,12 +8,7 @@
           <IFTAInput v-model="username" id="username" type="text" :label="$t('login.username')" :required="true"/>
           <IFTAInput v-model="password" id="password" type="password" :label="$t('login.password')" :required="true"/>
 
-          <div v-if="error" class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{error}}
-            <button type="button" class="close" @click="error = null">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
+          <error :error="error"/>
           <button type="submit" class="btn btn-primary btn-block" :disabled="loading">
             <p v-if="!loading" class="button-text">{{$t('login.login')}}</p>
             <spinner v-if="loading"/>
@@ -42,10 +37,11 @@
   import {mapActions} from "vuex";
   import IFTAInput from "../components/IFTAInput";
   import Spinner from "../components/General/Spinner";
+  import Error from "../components/General/Error";
 
   export default {
     name: "login",
-    components: {Spinner, IFTAInput},
+    components: {Error, Spinner, IFTAInput},
     data: () => ({
       username: "",
       password: "",

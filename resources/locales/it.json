@@ -49,6 +49,9 @@
       }
     }
   },
+  "reset": {
+    "done": "Fatto, controlla la tua email"
+  },
   "notFound": {
     "description": "Pagina non trovata",
     "link": "torna alla home"
@@ -56,5 +59,6 @@
   "save":"Salva",
   "cancel":"Annulla",
   "delete":"Elimina",
-  "no_result":"Nessun risultato"
+  "no_result":"Nessun risultato",
+  "unknown_error": "Qualcosa di strano è accaduto, prova ancora :/"
 }

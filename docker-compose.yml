@@ -8,7 +8,7 @@ services:
     volumes:
       - ./storage:/var/www/html/storage
     environment:
-      APP_NAME: 'Mugugno'
+      APP_NAME: 'Opinioni UniGe'
       APP_KEY: 'base64:9v5bJrE7VTI4ZFnNj2q1I1aN97KPulFKd71HdBDC/uw='
       APP_DEBUG: 'false'
       DB_CONNECTION: 'mysql'
