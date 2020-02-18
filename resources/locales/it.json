@@ -53,5 +53,6 @@
   },
   "save":"Salva",
   "cancel":"Annulla",
-  "delete":"Elimina"
+  "delete":"Elimina",
+  "no_result":"Nessun risultato"
 }
