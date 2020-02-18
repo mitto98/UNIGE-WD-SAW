@@ -39,6 +39,8 @@
       "title": "Title",
       "description": "Description",
       "last_update":"Last update",
+      "show_more": "Show more",
+      "show_less": "Show less",
       "insert":{
         "title": "Type a title",
         "description": "Type a description",

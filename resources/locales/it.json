@@ -35,10 +35,12 @@
     "comments": {
       "log_and_write": "Accedi e scrivi una recensione",
       "write_new": "Scrivi una recensione",
-      "revision": "Revisioni",
+      "revision": "Nuovo commento",
       "title": "Titolo",
       "description": "Descrizione",
-      "last_update":"Ultimo aggiornamento",
+      "last_update":"Ultima modifica",
+      "show_more": "Mostra altro",
+      "show_less": "Mostra meno",
       "insert": {
         "title": "Inserisci un titolo",
         "description": "Inserisci una descrizione",
