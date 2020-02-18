@@ -47,8 +47,11 @@
       }
     }
   },
+  "notFound": {
+    "description": "Pagina non trovata",
+    "link": "torna alla home"
+  },
   "save":"Salva",
   "cancel":"Annulla",
   "delete":"Elimina"
-
 }
