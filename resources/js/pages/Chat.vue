@@ -81,7 +81,7 @@
       farPaperPlane: () => farPaperPlane,
       enabledUsers: function() {
         return this.users.filter((u) => {
-          return u.name.includes(this.searchValue)
+          return u.name.toLowerCase().includes(this.searchValue.toLowerCase())
         })
       }
     },

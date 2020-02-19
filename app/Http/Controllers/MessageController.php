@@ -17,8 +17,8 @@ class MessageController extends Controller
         $messages = DB::table('messages')->where('sender_id', Auth::user()->id)
             ->orderBy('created_at', 'desc'); */
 
-        $messages = Message::where('sender_id', $request->user()->id)
-            ->where('receiver_id', $user->id)
+        $messages = Message::where([['sender_id', $request->user()->id],['receiver_id', $user->id]])
+            ->orWhere([['receiver_id', $request->user()->id],['sender_id', $user->id]])
             ->orderBy('created_at', 'asc')->get();
 
         return response()->json($messages);
