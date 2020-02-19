@@ -21,7 +21,7 @@ class UserController extends Controller
     }
 
     public function getUsers() {
-        return response()->json(User::all());
+        return response()->json(User::orderBy('name','asc')->get());
     }
 
     public function register(Request $request)

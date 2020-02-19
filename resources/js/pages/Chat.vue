@@ -7,7 +7,7 @@
     <div class="row">
       <div class="col-12 col-sm-4 chat-list no-padding">
         <ul class="list-group">
-          <li class="list-group-item no-padding" v-for="user in users" :key="i">
+          <li class="list-group-item no-padding" v-for="user in users" :key="i" @click="getMessages(user)">
             <div class="row chat-div">
               <font-awesome-icon icon="user" class="col-2 user-icon"/>
               <div class="col-10 username-style no-padding">
@@ -19,24 +19,24 @@
       </div>
       <div class="col-12 col-sm-8  no-padding">
         <div class="chat-messages">
-          <div class="messages" v-for="i in 30" :key="i" style="z-index: 80px">
-          <span v-if="i%2" class="badge badge-pill badge-primary his-message">
-            <p style="margin-left: 20px">Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
+          <div class="messages" v-for="message in messages" :key="i" style="z-index: 80px">
+          <span v-if="this.user.id === message.sender_id" class="badge badge-pill badge-primary his-message">
+            <p style="margin-left: 20px">{{message.text}}</p>
+            <span class="time-right">{{message.created_at}}</span>
           </span>
-            <span v-if="!(i%2)" class="badge badge-pill badge-secondary my-message">
-            <p style="margin-right: 20px">Hello. How are you today?</p>
-            <span class="time-left">11:00</span>
+            <span v-else class="badge badge-pill badge-secondary my-message">
+            <p style="margin-right: 20px">{{message.text}}</p>
+            <span class="time-left">{{message.created_at}}</span>
           </span>
           </div>
         </div>
         <div class="input-group text-field">
-          <div class="input-group-prepend align-bottom">
-            <input type="text" class="form-control" placeholder="Messaggio">
-            <span class="input-group-text">
+          <form class="input-group-prepend align-bottom" @submit="sendMessage">
+            <input v-model="currentMessage" type="text" class="form-control" placeholder="Messaggio">
+            <span class="input-group-text" type="submit">
               <font-awesome-icon :icon="farPaperPlane"/>
             </span>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -49,19 +49,32 @@
   import Search from "../components/Home/Search";
   import {faPaperPlane as farPaperPlane} from "@fortawesome/free-regular-svg-icons"
   import axios from "../axios";
+  import {mapGetters} from "vuex";
 
   export default {
     name: "Chat",
     components: {Search, IFTAInput},
     data: () => ({
       users: [],
+      messages:[],
+      currentMessage: []
     }),
     created() {
       axios.get("/api/user/all").then((response) => this.users = response.data)
     },
     computed: {
+      ...mapGetters(['user']),
       farPaperPlane: () => farPaperPlane,
 
+    },
+    methods: {
+      getMessages: (user) => {
+        axios.get("/api/chat/" + user.id).then((response) => this.messages = response.data)
+      },
+      sendMessage: () => {
+        console.log("Sending: " + this.currentMessage);
+        this.currentMessage = "";
+      },
     }
   }
 </script>

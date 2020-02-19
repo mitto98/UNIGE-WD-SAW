@@ -34,7 +34,7 @@ Route::prefix('course/{course}')->group(function () {
   });
 });
 
-Route::prefix('chat/{user}')->group(function () {
+Route::middleware('auth:api')->prefix('chat/{user}')->group(function () {
     Route::get('/', 'MessageController@getMessages');
     Route::put('/', 'MessageController@save');
     Route::delete('/{message}', 'MessageController@delete');

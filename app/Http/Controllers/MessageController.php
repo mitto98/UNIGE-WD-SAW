@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
 
-    public function getMessages(User $receiver)
+    public function getMessages(User $receiver, Request $request)
     {
         /*
         $messages = DB::table('messages')->where('sender_id', Auth::user()->id)
             ->orderBy('created_at', 'desc'); */
 
-        $messages = Message::where('sender_id', Auth::user()->id)
+        $messages = Message::where('sender_id', $request->user()->id)
             ->orderBy('created_at', 'desc')->get();
 
         return response()->json($messages);
