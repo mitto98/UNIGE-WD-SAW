@@ -7,7 +7,7 @@
         </span>
       </div>
       <input :value="value" @input="onInput" type="text"
-             class="form-control" :placeholder="$t('home.search')">
+             class="form-control" :placeholder="placeholder">
     </div>
     <hr class="my-0">
   </div>
@@ -18,7 +18,7 @@
 
   export default {
     name: "Search",
-    props: ['value'],
+    props: ['value','placeholder'],
     computed: {
       faSearch: () => faSearch,
     },
