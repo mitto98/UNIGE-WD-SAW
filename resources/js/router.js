@@ -58,6 +58,11 @@ export default new VueRouter({
       component: require("./pages/Chat").default
     },
     {
+      path: '/user_details',
+      name: 'user_details',
+      component: require("./pages/UserDetails").default
+    },
+    {
       path: '*',
       name: "not_found",
       component: require('./pages/not_found').default

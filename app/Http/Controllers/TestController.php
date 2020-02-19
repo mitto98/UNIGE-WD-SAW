@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Course;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,6 +101,13 @@ class TestController extends Controller
         } else {
             return response("Ehi cosa stai facendo?", 401);
         }
+    }
+
+    public function search(Request $request) {
+        if ($request->input('search'))
+            return response(Course::where('name', 'LIKE', '%'.$request->input('search').'%')->get());
+        else
+            return response(Course::all());
     }
 
     public function logout(Request $request) {

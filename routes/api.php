@@ -14,6 +14,8 @@ Route::prefix('user')->group(function () {
 
 });
 
+Route::get('send-newsletter', 'Controller@sendNewsletter');
+
 Route::prefix('area')->group(function () {
   Route::get('/', 'AreaController@index');
   Route::get('/{area}', 'AreaController@get');

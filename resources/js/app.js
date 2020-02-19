@@ -2,6 +2,7 @@ import Vue from "vue";
 import router from "./router";
 import store from "./vuex";
 import i18n from "./i18n";
+import Gravatar from 'vue-gravatar';
 
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faUserSecret,  faArrowCircleRight, faUser, faPencilAlt, faSave, faTimesCircle, faBars } from '@fortawesome/free-solid-svg-icons'
@@ -20,6 +21,7 @@ import App from "./App.vue";
 window.Vue = require('vue');
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
+Vue.component('v-gravatar', Gravatar);
 
 Vue.config.productionTip = false;
 
