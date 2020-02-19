@@ -63,9 +63,11 @@ echo check_correct_user($email, $first_name, $last_name, show_logged_user($baseu
 
 
 echo "------------------------\n";
-echo "TODO: implement search tests\n";
+$search = "inf";
+echo check_search_found($search, search($search, $baseurl))
+    ? "[*] Success!\n"
+    : "[*] Failed\n";
 
-// TODO: implement search check
 echo "------------------------\n";
 echo "[-] Calling logout.php\n";
 logout($baseurl);

@@ -17,4 +17,5 @@ Route::post('/login.php', 'TestController@login');
 Route::get('/show_profile.php', 'TestController@showProfile');
 Route::post('/update_profile.php', 'TestController@updateProfile');
 Route::get('/logout.php', 'TestController@logout');
+Route::get('/search.php', 'TestController@search');
 Route::get('/{any}', 'Controller@index')->where('any', '^((?!(api|test.html|[.]*.php)).)*$');
