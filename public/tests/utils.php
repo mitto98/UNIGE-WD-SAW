@@ -5,9 +5,7 @@ function generate_random_email() {
 
     // 5 lower case @ 10 lower case . 3 lower case
     $email = substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'),1,5)
-        . '@'
-        .substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'),1,10)
-        . '.'
+        . '@example.'
         .substr(str_shuffle('abcdefghijklmnopqrstuvwxyz'),1,3);
 
     return $email;
