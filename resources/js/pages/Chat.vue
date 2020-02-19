@@ -2,16 +2,16 @@
   <div class="container pt-5 pb-4">
     <h2 style="margin-bottom: 1.5rem"> Chat </h2>
     <div class="row" style="margin-bottom: 1.25rem">
-      <search :placeholder="$t('chat.search_user')" class="col-4"/>
+      <search v-model="searchValue" :placeholder="$t('chat.search_user')" class="col-4"/>
     </div>
     <div class="row">
       <div class="col-12 col-sm-4 chat-list no-padding">
         <ul class="list-group">
-          <li class="list-group-item no-padding" v-for="i in 50" :key="i">
-            <div class="row chat-div">
+          <li class="list-group-item no-padding" v-for="user in enabledUsers" :key="user.id" @click="getMessages(user.id)">
+            <div class="row chat-div" :class="getClass(user.id)">
               <font-awesome-icon icon="user" class="col-2 user-icon"/>
               <div class="col-10 username-style no-padding">
-                <p>Davide Cardo</p>
+                <p>{{user.name}}</p>
               </div>
             </div>
           </li>
@@ -19,24 +19,24 @@
       </div>
       <div class="col-12 col-sm-8  no-padding">
         <div class="chat-messages">
-          <div class="messages" v-for="i in 30" :key="i" style="z-index: 80px">
-          <span v-if="i%2" class="badge badge-pill badge-primary his-message">
-            <p style="margin-left: 20px">Hello. How are you today?</p>
-            <span class="time-right">11:00</span>
+          <div class="messages" v-for="message in messages" :key="message.id" style="z-index: 80px">
+          <span v-if="user.id === message.receiver_id" class="badge badge-pill badge-primary his-message">
+            <p style="margin-left: 20px">{{message.text}}</p>
+            <span class="time-right">{{message.created_at}}</span>
           </span>
-            <span v-if="!(i%2)" class="badge badge-pill badge-secondary my-message">
-            <p style="margin-right: 20px">Hello. How are you today?</p>
-            <span class="time-left">11:00</span>
+            <span v-else class="badge badge-pill badge-secondary my-message">
+            <p style="margin-right: 20px">{{message.text}}</p>
+            <span class="time-left">{{message.created_at}}</span>
           </span>
           </div>
         </div>
         <div class="input-group text-field">
-          <div class="input-group-prepend align-bottom">
-            <input type="text" class="form-control" placeholder="Messaggio">
-            <span class="input-group-text">
+          <form class="input-group-prepend align-bottom" @submit.prevent="sendMessage">
+            <input v-model="currentMessage" type="text" class="form-control" placeholder="Messaggio">
+            <span class="input-group-text" type="submit">
               <font-awesome-icon :icon="farPaperPlane"/>
             </span>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -48,16 +48,63 @@
   import IFTAInput from "../components/IFTAInput";
   import Search from "../components/Home/Search";
   import {faPaperPlane as farPaperPlane} from "@fortawesome/free-regular-svg-icons"
+  import axios from "../axios";
+  import {mapGetters} from "vuex";
 
   export default {
     name: "Chat",
     components: {Search, IFTAInput},
-    data: () => ({}),
+    data: () => ({
+      users: [],
+      messages: [],
+      currentMessage: "",
+      currentUserId: 0,
+      searchValue: "",
+      interval: false
+    }),
+    updated() {
+      if(this.currentUserId!==0 && !this.interval) {
+        this.interval = true;
+        setInterval(() => {
+          axios.get("/api/chat/" + this.currentUserId).then((response) => this.messages = response.data)
+        },1500)
+      }
+    },
     created() {
+      axios.get("/api/user/all").then((response) => {
+        this.users = response.data;
+        //this.currentUserId = response.data[0];
+      });
     },
     computed: {
+      ...mapGetters(['user']),
       farPaperPlane: () => farPaperPlane,
-
+      enabledUsers: function() {
+        return this.users.filter((u) => {
+          return u.name.includes(this.searchValue)
+        })
+      }
+    },
+    methods: {
+      getMessages(user) {
+        this.currentUserId = user;
+        axios.get("/api/chat/" + this.currentUserId).then((response) => this.messages = response.data)
+      },
+      sendMessage() {
+        axios.put("/api/chat/" + this.currentUserId,
+          {
+            text: this.currentMessage,
+            receiver_id: this.currentUserId,
+          }).then(() => {
+            this.currentMessage = "";
+            this.getMessages(this.currentUserId)
+        })
+      },
+      getClass(id) {
+        if(id === this.currentUserId) {
+          return "selected"
+        }
+      }
     }
   }
 </script>
@@ -69,6 +116,10 @@
   $chat_height: 650px;
   $messagges-list: 600px;
   $input_messagge_height: $chat_height - $messagges-list;
+
+  .selected {
+    background-color: $primary-lightgray
+  }
 
   .chat-list {
     height: $chat_height;
@@ -85,6 +136,7 @@
   .list-group-item {
     border: none;
     height: 4rem !important;
+
     &:hover {
       cursor: pointer;
       background-color: whitesmoke;
@@ -93,7 +145,7 @@
   }
 
   .chat-messages {
-    
+
     overflow: hidden;
     overflow-y: scroll;
     height: $messagges-list;
@@ -180,7 +232,7 @@
     font-size: 1rem
   }
 
-  .form-control{
+  .form-control {
     height: $input_messagge_height
   }
 

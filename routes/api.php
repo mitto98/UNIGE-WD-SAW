@@ -10,6 +10,7 @@ Route::prefix('user')->group(function () {
     Route::post('/reset', 'UserController@reset');
     Route::get('/reset/{token}', 'UserController@hasReset');
     Route::post('/reset/{token}', 'UserController@doReset');
+    Route::get('/all', 'UserController@getUsers');
 
 });
 
@@ -35,3 +36,8 @@ Route::prefix('course/{course}')->group(function () {
   });
 });
 
+Route::middleware('auth:api')->prefix('chat/{user}')->group(function () {
+    Route::get('/', 'MessageController@getMessages');
+    Route::put('/', 'MessageController@create');
+    Route::delete('/{message}', 'MessageController@delete');
+});
