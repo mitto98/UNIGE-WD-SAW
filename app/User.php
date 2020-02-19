@@ -11,8 +11,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, Notifiable;
 
-    public $incrementing = false;
-    protected $keyType = 'string';
     protected $fillable = ['registration_number', 'name', 'email', 'password',];
     protected $hidden = ['password', 'remember_token', 'created_at', 'updated_at'];
 
@@ -25,5 +23,9 @@ class User extends Authenticatable
     public function validateForPassportPasswordGrant($password)
     {
         return \Hash::check($password, $this->password);
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 }
