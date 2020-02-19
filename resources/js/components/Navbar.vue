@@ -33,6 +33,9 @@
             <router-link :to="{name : 'chat'}">
               <button type="button" class="dropdown-item btn btn-link">Chat</button>
             </router-link>
+            <router-link :to="{name : 'user_details'}">
+              <button type="button" class="dropdown-item btn btn-link">{{$t('home.user_details')}}</button>
+            </router-link>
             <button type="button" class="dropdown-item btn btn-link" @click="logut">Logout</button>
           </div>
         </li>

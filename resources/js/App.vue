@@ -72,6 +72,10 @@
     }
   }
 
+  .gravatar-round img{
+    border-radius: 50%;
+  }
+
   @keyframes change-color-blue {
     0% {
       background-color: $primary-blu;

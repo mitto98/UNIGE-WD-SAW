@@ -2,7 +2,8 @@
   "home": {
     "search": "Find your course",
     "opinions": "Opinioni UniGe",
-    "what_is": "What students thinks about the courses of the University of Genoa"
+    "what_is": "What students thinks about the courses of the University of Genoa",
+    "user_details" : "User Details"
   },
   "login": {
     "username": "Username",
@@ -23,7 +24,8 @@
     "matricola": "Student no.",
     "email": "Email",
     "name": "Name",
-    "repw": "Repeat password"
+    "repw": "Repeat password",
+    "icon": "Icona"
   },
   "gdpr": {
     "title": "Data protection policy",
