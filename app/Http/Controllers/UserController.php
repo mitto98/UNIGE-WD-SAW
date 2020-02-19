@@ -20,6 +20,10 @@ class UserController extends Controller
         return $request->user();
     }
 
+    public function getUsers() {
+        return response()->json(User::all());
+    }
+
     public function register(Request $request)
     {
         Validator::make($request->all(), [

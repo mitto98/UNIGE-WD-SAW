@@ -13,8 +13,12 @@ class MessageController extends Controller
 
     public function getMessages(User $receiver)
     {
-        $messages = DB::table('messages')->where('sender_id', Auth::user()->id
-            ->orderBy('created_at', 'desc'));
+        /*
+        $messages = DB::table('messages')->where('sender_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc'); */
+
+        $messages = Message::where('sender_id', Auth::user()->id)
+            ->orderBy('created_at', 'desc')->get();
 
         return response()->json($messages);
     }

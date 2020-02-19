@@ -7,11 +7,11 @@
     <div class="row">
       <div class="col-12 col-sm-4 chat-list no-padding">
         <ul class="list-group">
-          <li class="list-group-item no-padding" v-for="i in 50" :key="i">
+          <li class="list-group-item no-padding" v-for="user in users" :key="i">
             <div class="row chat-div">
               <font-awesome-icon icon="user" class="col-2 user-icon"/>
               <div class="col-10 username-style no-padding">
-                <p>Davide Cardo</p>
+                <p>{{user.name}}</p>
               </div>
             </div>
           </li>
@@ -48,12 +48,16 @@
   import IFTAInput from "../components/IFTAInput";
   import Search from "../components/Home/Search";
   import {faPaperPlane as farPaperPlane} from "@fortawesome/free-regular-svg-icons"
+  import axios from "../axios";
 
   export default {
     name: "Chat",
     components: {Search, IFTAInput},
-    data: () => ({}),
+    data: () => ({
+      users: [],
+    }),
     created() {
+      axios.get("/api/user/all").then((response) => this.users = response.data)
     },
     computed: {
       farPaperPlane: () => farPaperPlane,
@@ -85,6 +89,7 @@
   .list-group-item {
     border: none;
     height: 4rem !important;
+
     &:hover {
       cursor: pointer;
       background-color: whitesmoke;
@@ -93,7 +98,7 @@
   }
 
   .chat-messages {
-    
+
     overflow: hidden;
     overflow-y: scroll;
     height: $messagges-list;
@@ -180,7 +185,7 @@
     font-size: 1rem
   }
 
-  .form-control{
+  .form-control {
     height: $input_messagge_height
   }
 
