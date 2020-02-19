@@ -1,10 +1,11 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import not_found from "./pages/not_found";
+import store from "./vuex";
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -15,22 +16,34 @@ export default new VueRouter({
     {
       path: '/login',
       name: 'login',
-      component: require("./pages/login").default
+      component: require("./pages/login").default,
+      meta: {
+        requiresUnauth: true
+      }
     },
     {
       path: '/reset',
       name: 'reset',
-      component: require("./pages/reset").default
+      component: require("./pages/reset").default,
+      meta: {
+        requiresUnauth: true
+      }
     },
     {
       path: '/reset/:key',
       name: 'doReset',
-      component: require("./pages/doReset").default
+      component: require("./pages/doReset").default,
+      meta: {
+        requiresUnauth: true
+      }
     },
     {
       path: '/register',
       name: 'register',
-      component: require("./pages/register").default
+      component: require("./pages/register").default,
+      meta: {
+        requiresUnauth: true
+      }
     },
     {
       path: '/areas/:area',
@@ -55,12 +68,19 @@ export default new VueRouter({
     {
       path: '/chat',
       name: 'chat',
-      component: require("./pages/Chat").default
+      component: require("./pages/Chat").default,
+      meta: {
+        requiresAuth: true
+      }
+
     },
     {
       path: '/user_details',
       name: 'user_details',
-      component: require("./pages/UserDetails").default
+      component: require("./pages/UserDetails").default,
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '*',
@@ -69,3 +89,18 @@ export default new VueRouter({
     }
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (!store.getters["auth/isLoggedIn"]) {
+      next({path: 'login'});
+    }
+  } else if (to.matched.some(record => record.meta.requiresUnauth)) {
+    if (store.getters["auth/isLoggedIn"]) {
+      next({path: '/'});
+    }
+  }
+  next();
+});
+
+export default router;
