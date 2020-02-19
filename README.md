@@ -1,4 +1,4 @@
-# Ratings UniGe
+# UniGe Opinioni
 
 Sistema di raccoglimento delle opinioni degli studenti sui corsi dell'Università degli studi di Genova
 
