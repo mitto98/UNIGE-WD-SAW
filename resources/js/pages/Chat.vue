@@ -9,7 +9,7 @@
         <ul class="list-group">
           <li class="list-group-item no-padding" v-for="user in enabledUsers" :key="user.id" @click="getMessages(user.id)">
             <div class="row chat-div" :class="getClass(user.id)">
-              <font-awesome-icon icon="user" class="col-2 user-icon"/>
+              <v-gravatar :email="user.mail" class="col-2 user-icon gravatar_round"/>
               <div class="col-10 username-style no-padding">
                 <p>{{user.name}}</p>
               </div>
@@ -19,7 +19,7 @@
       </div>
       <div class="col-12 col-sm-8  no-padding">
         <div class="chat-messages">
-          <div class="messages" v-for="message in messages" :key="message.id" style="z-index: 80px">
+          <div class="messages" v-for="message in messages" :key="message.id" style="z-index: 80">
           <span v-if="user.id === message.receiver_id" class="badge badge-pill badge-primary his-message">
             <p style="margin-left: 20px">{{message.text}}</p>
             <span class="time-right">{{message.created_at}}</span>
@@ -85,7 +85,7 @@
       farPaperPlane: () => farPaperPlane,
       enabledUsers: function() {
         return this.users.filter((u) => {
-          return u.name.toLowerCase().includes(this.searchValue.toLowerCase())
+          return u.name.toLowerCase().includes(this.searchValue.toLowerCase()) && this.user.id !== u.id
         })
       }
     },
