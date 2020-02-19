@@ -31,8 +31,8 @@ function search($search ,$baseurl = 'http://localhost:5000') {
     curl_close($ch);
 
     return $result;
-} 
+}
 
 function check_search_found($search, $search_page) {
-    return strpos($show_page, $search); 
+    return strpos($search_page, $search);
 }
