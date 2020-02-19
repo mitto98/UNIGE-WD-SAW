@@ -9,7 +9,7 @@
           <h1>{{$t('home.opinions')}}</h1>
           <p>{{$t('home.what_is')}}</p>
         </div>
-        <search v-model="searchText" class="col-md-6  my-5"/>
+        <search v-model="searchText" :placeholder="$t('home.search')" class="col-md-6  my-5"/>
         <div v-if="!searchText" class="col-12 area-container">
           <area-box v-for="area in areas" :key="area.id" :area="area"/>
         </div>

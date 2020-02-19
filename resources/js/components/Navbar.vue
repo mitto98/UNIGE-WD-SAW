@@ -30,6 +30,9 @@
             {{user.name}}
           </button>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <router-link :to="{name : 'chat'}">
+              <button type="button" class="dropdown-item btn btn-link">Chat</button>
+            </router-link>
             <button type="button" class="dropdown-item btn btn-link" @click="logut">Logout</button>
           </div>
         </li>
