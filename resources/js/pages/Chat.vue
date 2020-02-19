@@ -60,15 +60,19 @@
       currentMessage: "",
       currentUserId: 0,
       searchValue: "",
-      interval: false
+      intervalActive: false,
+      interval: null
     }),
     updated() {
-      if(this.currentUserId!==0 && !this.interval) {
-        this.interval = true;
-        setInterval(() => {
+      if(this.currentUserId!==0 && !this.intervalActive) {
+        this.intervalActive = true;
+        this.interval = setInterval(() => {
           axios.get("/api/chat/" + this.currentUserId).then((response) => this.messages = response.data)
         },1500)
       }
+    },
+    destroyed() {
+      clearInterval(this.interval);
     },
     created() {
       axios.get("/api/user/all").then((response) => {
