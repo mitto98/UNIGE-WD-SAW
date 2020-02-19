@@ -11,14 +11,15 @@ use Illuminate\Support\Facades\Auth;
 class MessageController extends Controller
 {
 
-    public function getMessages(User $receiver, Request $request)
+    public function getMessages(User $user, Request $request)
     {
         /*
         $messages = DB::table('messages')->where('sender_id', Auth::user()->id)
             ->orderBy('created_at', 'desc'); */
 
         $messages = Message::where('sender_id', $request->user()->id)
-            ->orderBy('created_at', 'desc')->get();
+            ->where('receiver_id', $user->id)
+            ->orderBy('created_at', 'asc')->get();
 
         return response()->json($messages);
     }
@@ -32,7 +33,7 @@ class MessageController extends Controller
         $newMessage = new Message();
         $newMessage->text = $request->input('text');
         $newMessage->sender_id = Auth::user()->id;
-        $newMessage->user()->associate(User::findOrFail($request->input('receiver_id')));
+        $newMessage->receiver()->associate(User::findOrFail($request->input('receiver_id')));
         $newMessage->save();
 
         return response()->json($newMessage);
