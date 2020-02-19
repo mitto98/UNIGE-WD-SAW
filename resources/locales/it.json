@@ -56,6 +56,9 @@
     "description": "Pagina non trovata",
     "link": "torna alla home"
   },
+  "chat":{
+    "search_user":"Cerca uno studente"
+  },
   "save":"Salva",
   "cancel":"Annulla",
   "delete":"Elimina",
