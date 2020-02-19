@@ -2,7 +2,8 @@
   "home": {
     "search": "Cerca il tuo corso",
     "opinions": "Opinioni UniGe",
-    "what_is": "Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova"
+    "what_is": "Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova",
+    "user_details" : "Dettaglio utente"
   },
   "login": {
     "username": "Username",
@@ -23,7 +24,8 @@
     "matricola": "Matricola",
     "email": "Email",
     "name": "Nome",
-    "repw": "Ripeti password"
+    "repw": "Ripeti password",
+    "icon": "Icona"
   },
   "gdpr": {
     "title": "Politica sulla gestione dei dati",
