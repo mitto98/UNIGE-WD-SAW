@@ -22,6 +22,9 @@ services:
       MAIL_PORT: '25'
       MAIL_USERNAME: 'opinioni@unigee.it'
       MAIL_PASSWORD: 'Mammapapa98'
+      MAIL_FROM_ADDRESS: 'opinioni@unigee.it'
+      MAIL_FROM_NAME: 'Opinioni UniGe'
+      MAIL_ENCRYPTION: null
     depends_on:
       - mysql
     labels:
