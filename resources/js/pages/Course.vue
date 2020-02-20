@@ -20,13 +20,15 @@
       <average-rating :average_rating="course.average_rating" :ratings="this.ratings"/>
 
       <div v-if="!myComment" class="row mt-4">
-        <div  v-if="!is_insert" class="col-12 align-right">
-          <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert" style="font-size: 20px">
+        <div v-if="!is_insert" class="col-12 align-right">
+          <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert"
+                  style="font-size: 20px">
             <span class="badge">
               {{ $t('course.comments.write_new') }} <font-awesome-icon icon="pencil-alt"/>
             </span>
           </button>
-          <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn" style="font-size: 20px;color:white">
+          <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn"
+                       style="font-size: 20px;color:white">
               <span class="badge">
                 {{ $t('course.comments.log_and_write') }} <font-awesome-icon icon="pencil-alt"/>
               </span>
@@ -34,7 +36,7 @@
         </div>
         <div v-if="is_insert" class="view-insert">
           <h2>{{ $t('course.comments.revision')}}</h2>
-          <insert-comments v-on:saveNewComment="saveNewComment"v-on:closeInsertComment="closeInsertComment"/>
+          <insert-comments v-on:saveNewComment="saveNewComment" v-on:closeInsertComment="closeInsertComment"/>
         </div>
       </div>
 
@@ -43,8 +45,12 @@
       </div>
 
       <div class="row mt-4">
-          <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
+        <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
+        <div v-if="nextCommentPage" class="col-12">
+          <button class="btn btn-primary btn-block" @click="loadNextRating">{{$t('course.comments.load_other')}}</button>
+        </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -62,18 +68,36 @@
   export default {
     name: "CoursesDetails",
     components: {InsertComments, Comments, AverageRating, RatingBar, RatingStar},
+    data: () => ({
+      is_insert: thereIsACommentInLocalStorage(),
+      course: null,
+      comments: [],
+      ratings: [],
+      nextCommentPage: null,
+    }),
+    created() {
+      this.nextCommentPage = `/api/course/${this.$route.params.course}/comments`;
+      axios.get(`/api/course/${this.$route.params.course}`).then(response => {
+        this.course = response.data;
+      });
+      this.loadNextRating();
+      axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response => {
+        this.ratings = response.data.reverse();
+      })
+
+    },
     methods: {
       enableInsert: function () {
         this.is_insert = !this.is_insert
       },
-      closeInsertComment:function(){
+      closeInsertComment: function () {
         this.is_insert = false
       },
-      saveNewComment:function (new_comment) {
-        axios.put('/api/course/'+new_comment?.course_id+'/comments',new_comment).then(response => {
+      saveNewComment: function (new_comment) {
+        axios.put('/api/course/' + new_comment?.course_id + '/comments', new_comment).then(response => {
           this.comments.unshift(response.data);
           this.is_insert = false;
-          axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
+          axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response => {
             this.ratings = response.data.reverse();
           });
           axios.get(`/api/course/${this.$route.params.course}`).then(response => {
@@ -81,24 +105,12 @@
           });
         });
       },
-    },
-    data: () => ({
-      is_insert: thereIsACommentInLocalStorage(),
-      course: null,
-      comments: [],
-      ratings: []
-    }),
-    created() {
-      axios.get(`/api/course/${this.$route.params.course}`).then(response => {
-        this.course = response.data;
-      });
-      axios.get(`/api/course/${this.$route.params.course}/comments`).then(response => {
-        this.comments = response.data;
-      });
-      axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response =>{
-        this.ratings = response.data.reverse();
-      })
-
+      loadNextRating() {
+        return axios.get(this.nextCommentPage).then(response => {
+          this.comments.push(...response.data.data);
+          this.nextCommentPage = response.data.next_page_url;
+        });
+      }
     },
     computed: {
       ...mapGetters(['user']),

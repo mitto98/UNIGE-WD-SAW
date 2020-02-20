@@ -2,7 +2,7 @@
     <h1>Ciao {{$user->name}},</h1>
     <p>Ecco i tuoi ultimi commenti ai corsi UniGe</p>
 
-    @foreach ($user->comments()->limit(3)->get() as $comment)
+    @foreach ($user->comments()->orderBy('id', 'DESC')->limit(3)->get() as $comment)
         <hr>
         <h3>{{ $comment->title }}</h3>
         <p>{{ $comment->text }}</p>

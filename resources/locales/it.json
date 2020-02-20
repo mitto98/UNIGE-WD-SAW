@@ -48,6 +48,7 @@
       "last_update":"Ultima modifica",
       "show_more": "Mostra altro",
       "show_less": "Mostra meno",
+      "load_other": "Carica altri commenti",
       "insert": {
         "title": "Inserisci un titolo",
         "description": "Inserisci una descrizione",

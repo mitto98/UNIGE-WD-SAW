@@ -48,6 +48,7 @@
       "last_update": "Last update",
       "show_more": "Show more",
       "show_less": "Show less",
+      "load_other": "Load other comments",
       "insert": {
         "title": "Type a title",
         "description": "Type a description",
