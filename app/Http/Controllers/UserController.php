@@ -45,6 +45,44 @@ class UserController extends Controller
         return response("Registered");
     }
 
+
+    public function updateData(Request $request)
+    {
+        Validator::make($request->all(), [
+            'registration_number' => ['required', 'string', 'max:8','unique:users,registration_number,' . $request->input('id')],
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255','unique:users,email,' . $request->input('id')]
+        ])->validate();
+
+        $user = $request->user();
+        $user->registration_number = $request->input('registration_number');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->update();
+
+        return response()->json($user);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        Validator::make($request->all(), [
+            'oldPassword' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:4'],
+        ])->validate();
+
+        if(!\Hash::check($request->input('oldPassword'), $request->user()->password)) {
+            return response()->json(['message' => 'Password vecchia errata'], 401);
+        }
+
+        $user = $request->user();
+        $user->password = Hash::make($request->input('password'));
+        $user->update();
+
+        $user->notify(new PasswordResetSuccess());
+
+        return response()->json($user);
+    }
+
     public function reset(Request $request)
     {
 
