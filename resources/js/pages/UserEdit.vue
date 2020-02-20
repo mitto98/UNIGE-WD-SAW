@@ -4,22 +4,22 @@
     <div v-if="bkUser && user">
       <form @submit.prevent="saveData" class="padding-md">
         <div class="row ">
-          <div class="col-8 col-sm-8">
+          <div class="col-12 col-sm-10 col-md-8">
             <IFTAInput v-model="bkUser.name" id="name" type="text" :label="$t('register.name')" :required="true"
                        :error="nameError"/>
           </div>
-          <div class="col-8 col-sm-8">
+          <div class="col-12 col-sm-10 col-md-8">
             <IFTAInput v-model="bkUser.registration_number" id="matricola" type="text"
                        :label="$t('register.matricola')" :required="true" :error="matricolaError"/>
           </div>
-          <div class="col-8 col-sm-8">
+          <div class="col-12 col-sm-10 col-md-8">
             <IFTAInput v-model="bkUser.email" id="email" type="email" :label="$t('register.email')"
                        :required="true" :error="emailError"/>
           </div>
         </div>
         <div class="row" style="margin-top: 30px">
           <div class="col-6"></div>
-          <div class="col-2" style="float: right">
+          <div class="col-6 col-sm-4 col-md-3" style="float: right">
             <button type="submit" class="btn btn-mugugno-primary" style="width: 100%" :disabled="loading">
               <p class="button-text" v-if="!loading">{{$t('save')}}
                 <font-awesome-icon :icon="!editEnabled?'pen':'save'"/>
@@ -32,21 +32,21 @@
 
       <form @submit.prevent="changePw">
         <h2>{{$t('user.edit_password')}}</h2>
-        <div class="col-8 col-sm-8">
+        <div class="col-12 col-sm-10 col-md-8">
           <IFTAInput v-model="bkUser.oldPassword" id="password" type="password" :label="$t('user.old_password')"
                      :required="true" :error="oldPasswordError"/>
         </div>
-        <div class="col-8 col-sm-8">
+        <div class="col-12 col-sm-10 col-md-8">
           <IFTAInput v-model="bkUser.password" id="password" type="password" :label="$t('login.password')"
                      :required="true"/>
         </div>
-        <div class="col-8 col-sm-8">
+        <div class="col-12 col-sm-10 col-md-8">
           <IFTAInput v-model="bkUser.rePassword" id="repassword" type="password" :label="$t('register.repw')"
                      :required="true" :error="reError"/>
         </div>
         <div class="row" style="margin-top: 30px">
           <div class="col-6"></div>
-          <div class="col-2" style="float: right">
+          <div class="col-6 col-sm-4 col-md-3" style="float: right">
             <button type="submit" class="btn btn-mugugno-primary" style="width: 100%" :disabled="loadingChangePw">
               <p class="button-text" v-if="!loadingChangePw">{{$t('save')}}
                 <font-awesome-icon  :icon="!editEnabled?'pen':'save'"/>

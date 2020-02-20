@@ -2,7 +2,7 @@
   <div class="container pt-5 pb-4">
     <h2 style="margin-bottom: 1.5rem"> Chat </h2>
     <div class="row" style="margin-bottom: 1.25rem">
-      <search v-model="searchValue" :placeholder="$t('chat.search_user')" class="col-4"/>
+      <search v-model="searchValue" :placeholder="$t('chat.search_user')" class="col-12 col-sm-4"/>
     </div>
     <div class="row">
       <div class="col-12 col-sm-4 chat-list no-padding">
