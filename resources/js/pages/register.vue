@@ -58,7 +58,7 @@
     }),
     computed: {
       nameError() {
-        if (!(/^[a-zA-Z'-\s]+$/i).test(this.user.name))
+        if (!(/^[a-zA-Z'-\s]+$/i).test(this.name))
           return "Formato nome non corretto";
       },
       reError() {

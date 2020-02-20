@@ -9,7 +9,7 @@
         <ul class="list-group">
           <li class="list-group-item no-padding" v-for="user in enabledUsers" :key="user.id" @click="getMessages(user.id)">
             <div class="row chat-div" :class="getClass(user.id)">
-              <v-gravatar :email="user.mail" class="col-2 user-icon gravatar_round"/>
+              <v-gravatar :email="user.mail" class="col-2 user-icon" style="border-radius: 50%"/>
               <div class="col-10 username-style no-padding">
                 <p>{{user.name}}</p>
               </div>

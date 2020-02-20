@@ -7,7 +7,7 @@
   },
   "user":{
     "edit_data":"Modifica i tuoi dati",
-    "edit_password": "Cambia Password",
+    "edit_password": "Cambia la password",
     "old_password" : "Vecchia password"
   },
   "login": {
