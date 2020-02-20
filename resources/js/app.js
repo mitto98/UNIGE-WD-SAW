@@ -5,7 +5,7 @@ import i18n from "./i18n";
 import Gravatar from 'vue-gravatar';
 
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faUserSecret,  faArrowCircleRight, faUser, faPencilAlt, faSave, faTimesCircle, faBars } from '@fortawesome/free-solid-svg-icons'
+import {faUserSecret,  faArrowCircleRight, faUser, faPencilAlt, faSave, faTimesCircle, faBars, faPen } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 library.add(faUserSecret);
@@ -15,6 +15,7 @@ library.add(faPencilAlt);
 library.add(faSave);
 library.add(faTimesCircle);
 library.add(faBars);
+library.add(faPen);
 
 import App from "./App.vue";
 

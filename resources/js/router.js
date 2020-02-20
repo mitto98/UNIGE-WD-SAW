@@ -83,6 +83,11 @@ const router = new VueRouter({
       }
     },
     {
+      path: '/user_edit',
+      name: 'user_edit',
+      component: require("./pages/UserEdit").default
+    },
+    {
       path: '*',
       name: "not_found",
       component: require('./pages/not_found').default

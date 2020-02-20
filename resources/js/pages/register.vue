@@ -10,7 +10,7 @@
                      :label="$t('register.matricola')" :error="matricolaError"/>
           <IFTAInput v-model="name"
                      id="name" type="text" :required="true"
-                     :label="$t('register.name')"/>
+                     :label="$t('register.name')" :error="nameError"/>
           <IFTAInput v-model="mail"
                      id="email" type="text" :required="true"
                      :label="$t('register.email')" :error="emailError"/>
@@ -57,6 +57,10 @@
       loading: false,
     }),
     computed: {
+      nameError() {
+        if (!(/^[a-zA-Z'-\s]+$/i).test(this.user.name))
+          return "Formato nome non corretto";
+      },
       reError() {
         if (this.password !== this.rePassword)
           return "Le password non coincidono";

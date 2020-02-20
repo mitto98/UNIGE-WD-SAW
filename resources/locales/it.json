@@ -5,6 +5,11 @@
     "what_is": "Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova",
     "user_details" : "Dettaglio utente"
   },
+  "user":{
+    "edit_data":"Modifica i tuoi dati",
+    "edit_password": "Cambia Password",
+    "old_password" : "Vecchia password"
+  },
   "login": {
     "username": "Username",
     "password": "Password",
@@ -25,7 +30,7 @@
     "email": "Email",
     "name": "Nome",
     "repw": "Ripeti password",
-    "icon": "Icona"
+    "icon": "Avatar"
   },
   "gdpr": {
     "title": "Politica sulla gestione dei dati",
@@ -62,6 +67,7 @@
     "search_user":"Cerca uno studente"
   },
   "save":"Salva",
+  "edit":"Modifica",
   "cancel":"Annulla",
   "delete":"Elimina",
   "no_result":"Nessun risultato",

@@ -3,7 +3,12 @@
 use Illuminate\Http\Request;
 
 Route::prefix('user')->group(function () {
-    Route::middleware('auth:api')->get('/', 'UserController@current');
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/', 'UserController@current');
+
+        Route::put('/update', 'UserController@updateData');
+        Route::put('/change-password', 'UserController@updatePassword');
+    });
 
     Route::post('/register', 'UserController@register');
 
@@ -27,9 +32,9 @@ Route::prefix('course/{course}')->group(function () {
 
   Route::prefix('/comments')->group(function () {
       Route::get('/', 'CommentController@getComments');
-      Route::put('/', 'CommentController@store');
+      Route::middleware('auth:api')->put('/', 'CommentController@store');
 
-      Route::prefix('/{commment}')->group(function () {
+      Route::middleware('auth:api')->prefix('/{commment}')->group(function () {
           Route::post('/', 'CommentController@update');
           Route::delete('/', 'CommentController@delete');
       });

@@ -5,6 +5,11 @@
     "what_is": "What students thinks about the courses of the University of Genoa",
     "user_details" : "User Details"
   },
+  "user":{
+    "edit_data":"Edit your data",
+    "edit_password": "Change password",
+    "old_password" : "Old password"
+  },
   "login": {
     "username": "Username",
     "password": "Password",
@@ -25,7 +30,7 @@
     "email": "Email",
     "name": "Name",
     "repw": "Repeat password",
-    "icon": "Icona"
+    "icon": "Avatar"
   },
   "gdpr": {
     "title": "Data protection policy",
@@ -62,6 +67,7 @@
     "search_user":"Find a student"
   },
   "save": "Save",
+  "edit": "Edit",
   "cancel": "Cancel",
   "delete": "Delete",
   "no_result": "No results",
