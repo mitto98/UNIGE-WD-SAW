@@ -36,7 +36,7 @@
           </div>
         </div>
         <div class="row justify-content-end" style="margin-top: 30px">
-          <div class="col-2" style="float: right">
+          <div class="col-6 col-sm-4 col-md-3" style="float: right">
             <router-link :to="{name : 'user_edit'}" class="btn btn-mugugno-primary" style="width: 100%">
               <p class="button-text">
                 {{$t('edit')}}
