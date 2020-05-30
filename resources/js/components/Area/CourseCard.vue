@@ -63,11 +63,6 @@
         color: white !important;
       }
     }
-    &:hover {
-      padding-left: 18px;
-      padding-right: 18px;
-      animation: shift-in .3s;
-    }
   }
 
   a {

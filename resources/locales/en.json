@@ -2,8 +2,9 @@
   "home": {
     "search": "Find your course",
     "opinions": "Opinioni UniGe",
-    "what_is": "What students thinks about the courses of the University of Genoa",
-    "user_details" : "User Details"
+    "what_is": "Because your opinions will change your future!",
+    "user_details" : "User Details",
+    "course_of": "Courses of "
   },
   "user":{
     "edit_data":"Edit your data",
@@ -15,7 +16,7 @@
     "password": "Password",
     "login": "Log-in",
     "reset": "Reset password",
-    "forgot_pw": "Forgot passowrd?",
+    "forgot_pw": "Forgot password?",
     "help": "Need help?",
     "gdpr": "Data protection policy (GDPR)",
     "got_help": "Arrangiati anche in inglese",

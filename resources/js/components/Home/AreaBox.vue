@@ -3,7 +3,7 @@
     <router-link :to="{name : 'area', params: { area: area.id }}"
                  class="p-1 rounded text-center"
                  :style="{backgroundColor: area.background_color, color: area.text_color || '#000'}">
-      {{area.name}}
+      {{$t('home.course_of')}} {{area.name}}
     </router-link>
   </div>
 </template>
@@ -40,6 +40,7 @@
     &:hover {
       padding: 12px;
       animation: shift-in .3s;
+      text-decoration: underline;
     }
 
     a {

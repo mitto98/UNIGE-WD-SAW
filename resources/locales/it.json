@@ -2,8 +2,9 @@
   "home": {
     "search": "Cerca il tuo corso",
     "opinions": "Opinioni UniGe",
-    "what_is": "Cosa pensano gli studenti sui corsi di studio dell'Università degli studi di Genova",
-    "user_details" : "Dettaglio utente"
+    "what_is": "Perché le vostre opinioni cambieranno il vostro futuro!",
+    "user_details" : "Dettaglio utente",
+    "course_of": "Corsi di "
   },
   "user":{
     "edit_data":"Modifica i tuoi dati",
