@@ -47,10 +47,6 @@
     flex-direction: row;
   }
 
-  .padding-md {
-    padding: 1.25rem;
-  }
-
   .btn-mugugno-primary {
     background-color: $primary-blu;
     color: #ffffff;

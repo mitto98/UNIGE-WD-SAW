@@ -2,7 +2,7 @@
   <div class="container  pt-5 pb-4">
     <h2 class="margin-title">{{$t('user.edit_data')}}</h2>
     <div v-if="bkUser && user">
-      <form @submit.prevent="saveData" class="padding-md">
+      <form @submit.prevent="saveData">
         <div class="row ">
           <div class="col-12 col-sm-10 col-md-8">
             <IFTAInput v-model="bkUser.name" id="name" type="text" :label="$t('register.name')" :required="true"

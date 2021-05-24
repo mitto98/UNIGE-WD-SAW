@@ -2,7 +2,7 @@
   <div>
     <div v-if="course" class="container">
       <div class="row">
-        <div class="col-12 pt-5">
+        <div class="col-12 py-5">
           <h1><b class="h1-mugugno">{{course.name}}</b></h1>
           <a :href="`https://corsi.unige.it/${course.id}`" target="_blank">
             {{ $t('course.info') }}
@@ -11,43 +11,37 @@
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-12 col-md-5" style="text-align: center">
-          <h2>{{comments.length}} {{ $t('course.ratings') }}</h2>
-        </div>
-      </div>
+      <average-rating :average_rating="course.average_rating"
+                      :total="comments.length"
+                      :ratings="this.ratings"
+                      v-model="selectedRating"/>
 
-      <average-rating :average_rating="course.average_rating" :ratings="this.ratings"/>
 
-      <div v-if="!myComment" class="row mt-4">
-        <div v-if="!is_insert" class="col-12 align-right">
-          <button type="button" class="btn btn-mugugno-primary" v-if="isLoggedIn" v-on:click="enableInsert"
-                  style="font-size: 20px">
-            <span class="badge">
-              {{ $t('course.comments.write_new') }} <font-awesome-icon icon="pencil-alt"/>
-            </span>
+      <div v-if="!myComment" class="row pt-4 pb-5">
+        <div v-if="!is_insert" class="col-12">
+          <button type="button"
+                  class="btn btn-mugugno-primary write-comment-button"
+                  v-on:click="enableInsert">
+            {{ isLoggedIn ? $t('course.comments.write_new') : $t('course.comments.log_and_write') }}
+            <font-awesome-icon icon="pencil-alt"/>
           </button>
-          <router-link :to="{name: 'login'}" class="btn btn-mugugno-primary" v-if="!isLoggedIn"
-                       style="font-size: 20px;color:white">
-              <span class="badge">
-                {{ $t('course.comments.log_and_write') }} <font-awesome-icon icon="pencil-alt"/>
-              </span>
-          </router-link>
+
         </div>
-        <div v-if="is_insert" class="view-insert">
-          <h2>{{ $t('course.comments.revision')}}</h2>
+        <div v-else class="col-12">
           <insert-comments v-on:saveNewComment="saveNewComment" v-on:closeInsertComment="closeInsertComment"/>
         </div>
       </div>
 
-      <div v-else>
-        <comments :comment="myComment"/>
-      </div>
+      <comments v-else :comment="myComment"/>
 
-      <div class="row mt-4">
-        <comments v-for="comment in comments" :key="comment.id" :comment="comment"/>
-        <div v-if="nextCommentPage" class="col-12">
-          <button class="btn btn-primary btn-block" @click="loadNextRating">{{$t('course.comments.load_other')}}</button>
+
+      <div class="row">
+        <comments v-for="comment in displayComments" :key="comment.id" :comment="comment"/>
+
+        <div v-if="showCount < comments.length" class="col-12">
+          <button class="btn btn-primary btn-block" @click="showCount = showCount + 5">
+            {{$t('course.comments.load_other')}}
+          </button>
         </div>
       </div>
 
@@ -57,46 +51,54 @@
 
 <script>
   import {faExternalLinkAlt} from '@fortawesome/free-solid-svg-icons';
-  import {mapGetters} from "vuex";
-  import RatingStar from "../components/General/RatingStar";
-  import RatingBar from "../components/General/RatingBar";
-  import AverageRating from "../components/Area/CoursesDetails/AverageRating";
-  import Comments from "../components/Area/CoursesDetails/Comments";
-  import axios from "../axios";
-  import InsertComments from "../components/Area/CoursesDetails/InsertComments";
+  import {mapGetters} from 'vuex';
+  import RatingStar from '../components/General/RatingStar';
+  import AverageRating from '../components/Area/CoursesDetails/AverageRating';
+  import Comments from '../components/Area/CoursesDetails/Comments';
+  import axios from '../axios';
+  import InsertComments from '../components/Area/CoursesDetails/InsertComments';
 
   export default {
-    name: "CoursesDetails",
-    components: {InsertComments, Comments, AverageRating, RatingBar, RatingStar},
+    name: 'CoursesDetails',
+    components: {InsertComments, Comments, AverageRating, RatingStar},
     data: () => ({
+      isLoading: true,
       is_insert: thereIsACommentInLocalStorage(),
+      showCount: 5,
       course: null,
       comments: [],
       ratings: [],
-      nextCommentPage: null,
+      selectedRating: 0,
     }),
-    created() {
-      this.nextCommentPage = `/api/course/${this.$route.params.course}/comments`;
-      axios.get(`/api/course/${this.$route.params.course}`).then(response => {
-        this.course = response.data;
-      });
-      this.loadNextRating();
-      axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response => {
-        this.ratings = response.data.reverse();
-      })
 
+    created() {
+      Promise.all([
+        axios.get(`/api/course/${this.$route.params.course}`),
+        axios.get(`/api/course/${this.$route.params.course}/comments`),
+        axios.get(`/api/course/${this.$route.params.course}/ratings_bar`),
+      ]).then(([courseReponse, commentsResponse, ratingBarContainer]) => {
+        this.course = courseReponse.data;
+        this.comments = commentsResponse.data;
+        this.ratings = ratingBarContainer.data.reverse();
+        this.isLoading = false;
+      });
     },
+
     methods: {
-      enableInsert: function () {
-        this.is_insert = !this.is_insert
+      enableInsert: function() {
+        if (this.isLoggedIn)
+          this.is_insert = !this.is_insert;
+        else
+          this.$router.push({name: 'login'});
       },
-      closeInsertComment: function () {
-        this.is_insert = false
+      closeInsertComment: function() {
+        this.is_insert = false;
       },
-      saveNewComment: function (new_comment) {
+      saveNewComment: function(new_comment) {
         axios.put('/api/course/' + new_comment?.course_id + '/comments', new_comment).then(response => {
           this.comments.unshift(response.data);
           this.is_insert = false;
+
           axios.get(`/api/course/${this.$route.params.course}/ratings_bar`).then(response => {
             this.ratings = response.data.reverse();
           });
@@ -105,25 +107,23 @@
           });
         });
       },
-      loadNextRating() {
-        return axios.get(this.nextCommentPage).then(response => {
-          this.comments.push(...response.data.data);
-          this.nextCommentPage = response.data.next_page_url;
-        });
-      }
     },
     computed: {
       ...mapGetters(['user']),
-      ...mapGetters('auth', ["isLoggedIn"]),
+      ...mapGetters('auth', ['isLoggedIn']),
       faExternalLinkAlt: () => faExternalLinkAlt,
       myComment() {
         if (this.user) {
           return this.comments.find(c => c.user_id === this.user.id);
         }
         return null;
-      }
-    }
-  }
+      },
+      displayComments() {
+        return this.comments.filter(c => !this.selectedRating || c.rating === this.selectedRating)
+          .slice(0, this.showCount);
+      },
+    },
+  };
 
   /**
    * @desc check is there is any element related to a writing comment in the local storage
@@ -131,9 +131,9 @@
    */
   function thereIsACommentInLocalStorage() {
     let value = false;
-    value = value || !([null, ""]).includes(localStorage.getItem("comment_title"));
-    value = value || !([null, ""]).includes(localStorage.getItem("comment_text"));
-    value = value || !([null, ""]).includes(localStorage.getItem("comment_rating"));
+    value = value || !([null, '']).includes(localStorage.getItem('comment_title'));
+    value = value || !([null, '']).includes(localStorage.getItem('comment_text'));
+    value = value || !([null, '']).includes(localStorage.getItem('comment_rating'));
     return value;
   }
 </script>
@@ -141,6 +141,12 @@
 <style scoped lang="scss">
 
   @import "../../sass/variables";
+
+  .write-comment-button {
+    font-size: 15px;
+    padding: 0.625em 1.15em;
+    color: white;
+  }
 
   .align-bottom {
     margin-top: auto;
@@ -150,30 +156,8 @@
     margin-left: auto;
   }
 
-  .row {
-    margin-top: 1.875rem;
-    margin-bottom: 1.875rem;
-  }
-
   hr {
     border: 0;
     border-top: 0.10rem solid rgba(0, 0, 0, 0.1);
   }
-
-  .view-insert {
-    animation-duration: 5s;
-    animation-name: panel-animation;
-    animation-delay: 3s;
-  }
-
-  @keyframes panel-animation {
-    from {
-      height: 0;
-    }
-
-    to {
-      height: 100%;
-    }
-  }
-
 </style>

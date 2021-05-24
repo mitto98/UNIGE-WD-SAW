@@ -1,114 +1,117 @@
 <template>
-  <form @submit.prevent="saveComment" class="padding-md">
-    <div class="row">
-      <div class="col-12 col-md-6">
-        <IFTAInput v-model="new_comment.title" :error="titleError" :required="true" id="title" type="text"
-                   :label="$t('course.comments.title')"/>
+  <form @submit.prevent="saveComment" class="row">
+    <div class="col-12">
+      <h2>{{ $t('course.comments.revision')}}</h2></div>
+    <div class="col-12 col-md-6">
+      <IFTAInput v-model="new_comment.title" :error="titleError" :required="true" id="title" type="text"
+                 :label="$t('course.comments.title')"/>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="align-in-row ">
+        <p class="size-label"><b>{{$t('course.comments.insert.evaluate')}} * :</b></p>
+        <rating-star-input v-model="new_comment.rating" :large="false"/>
       </div>
-      <div class="col-12 col-md-6">
-        <div class="align-in-row ">
-          <p class="size-label"><b>{{$t('course.comments.insert.evaluate')}} * :</b></p>
-          <rating-star-input v-model="new_comment.rating" :large="false"/>
-        </div>
-      </div>
-      <div class="col-12 col-md-12">
-        <IFTAInput v-model="new_comment.text" id="title" type="text" :required="true"
-                   :label="$t('course.comments.description')"
-                   :rows="3"/>
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-mugugno-primary float-right">
+    </div>
+
+    <div class="col-12">
+      <IFTAInput v-model="new_comment.text" id="title" type="text" :required="true"
+                 :label="$t('course.comments.description')"
+                 :rows="4"/>
+    </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-mugugno-primary float-right">
           <span class="badge">
             {{ $t('save') }} <font-awesome-icon icon="save"/>
           </span>
-        </button>
-        <button type="button" class="btn btn-mugugno-error float-right mr-3" @click="emitEventClose">
+      </button>
+      <button type="button" class="btn btn-mugugno-error float-right mr-3" @click="emitEventClose">
           <span class="badge">
             {{ $t('cancel') }} <font-awesome-icon icon="times-circle"/>
           </span>
-        </button>
-      </div>
+      </button>
     </div>
     <hr/>
   </form>
 </template>
 
 <script>
-  import RatingStar from "../../General/RatingStar";
-  import IFTAInput from "../../../components/IFTAInput";
-  import {mapGetters} from "vuex";
-  import RatingStarInput from "./RatingStarInput";
+  import RatingStar from '../../General/RatingStar';
+  import IFTAInput from '../../../components/IFTAInput';
+  import {mapGetters} from 'vuex';
+  import RatingStarInput from './RatingStarInput';
 
   export default {
-    name: "InsertComments",
-    components: {RatingStarInput, RatingStar,IFTAInput},
-    created(){
+    name: 'InsertComments',
+    components: {RatingStarInput, RatingStar, IFTAInput},
+    created() {
       this.new_comment.course_id = this.$route.params.course;
-      this.new_comment.user_id = this.user?.id
+      this.new_comment.user_id = this.user?.id;
     },
-    computed:{
-      ...mapGetters(["user"]),
-      titleError(){
-        if(this.new_comment.title.length > 128)
-          return "Titolo troppo lungo"
-      }
+    computed: {
+      ...mapGetters(['user']),
+      titleError() {
+        if (this.new_comment.title.length > 128)
+          return 'Titolo troppo lungo';
+      },
     },
     watch: {
       'new_comment.title': {
-        handler: function () {
+        handler: function() {
           //console.log("Title changed");
-          localStorage.setItem("comment_title", this.new_comment.title);
+          localStorage.setItem('comment_title', this.new_comment.title);
         },
-        deep: true
+        deep: true,
       },
       'new_comment.text': {
-        handler: function () {
+        handler: function() {
           //console.log("Text changed");
-          localStorage.setItem("comment_text", this.new_comment.text);
+          localStorage.setItem('comment_text', this.new_comment.text);
         },
-        deep: true
+        deep: true,
       },
       'new_comment.rating': {
-        handler: function () {
+        handler: function() {
           //console.log("Rating changed");
-          localStorage.setItem("comment_rating", this.new_comment.rating.toString());
+          localStorage.setItem('comment_rating', this.new_comment.rating.toString());
         },
-        deep: true
-      }
+        deep: true,
+      },
     },
     data: () => ({
       new_comment: {
-        title: localStorage.getItem("comment_title") || "",
-        text: localStorage.getItem("comment_text") || "",
-        rating: Number.parseInt(localStorage.getItem("comment_rating") || "0"),
+        title: localStorage.getItem('comment_title') || '',
+        text: localStorage.getItem('comment_text') || '',
+        rating: Number.parseInt(localStorage.getItem('comment_rating') || '0'),
         user_id: null,
-        course_id : null
-      }
+        course_id: null,
+      },
     }),
-    methods :{
-      saveComment: function () {
+    methods: {
+      saveComment: function() {
         this.$emit('saveNewComment', this.new_comment);
         this.emptyLocalStorage();
       },
       emptyLocalStorage() {
-        localStorage.removeItem("comment_title");
-        localStorage.removeItem("comment_text");
-        localStorage.removeItem("comment_rating");
+        localStorage.removeItem('comment_title');
+        localStorage.removeItem('comment_text');
+        localStorage.removeItem('comment_rating');
         this.new_comment = {
-          title: "",
-          text: "",
-          rating: 0
-        }
+          title: '',
+          text: '',
+          rating: 0,
+        };
       },
-      emitEventClose:function(){
+      emitEventClose: function() {
         this.emptyLocalStorage();
-        this.$emit('closeInsertComment')
+        this.$emit('closeInsertComment');
       },
-      updateRatingStar : function (rating) {
-        this.new_comment.rating = rating
-      }
-    }
-  }
+      updateRatingStar: function(rating) {
+        this.new_comment.rating = rating;
+      },
+    },
+  };
 </script>
 
 <style scoped lang="scss">

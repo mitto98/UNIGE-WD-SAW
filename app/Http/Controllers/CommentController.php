@@ -12,7 +12,8 @@ class CommentController extends Controller
 {
     public function getComments(Course $course)
     {
-        $comments = $course->comments()->simplePaginate(5);
+//        $comments = $course->comments()->simplePaginate(5);
+        $comments = $course->comments;
         return response()->json($comments);
     }
 

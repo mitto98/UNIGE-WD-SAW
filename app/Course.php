@@ -15,8 +15,4 @@ class Course extends Model
   public function comments() {
     return $this->hasMany(Comment::class);
   }
-
-  public function comments() {
-    $this->hasMany(Comment::class,'course');
-  }
 }
